@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "image_banner": {
+      "type": "image-banner",
+      "settings": {
+        "heading": "MILUTIN",
+        "subheading": "Minimalistički stil za moderan život"
+      }
+    }
+  },
+  "order": [
+    "image_banner"
+  ]
+}

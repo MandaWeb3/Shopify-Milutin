@@ -1,0 +1,158 @@
+{%- comment -%}
+  Mobile Menu Overlay
+  - Full-screen overlay menu
+  - Accordion-style navigation
+  - Search, account links
+
+  Parameters:
+  - menu: Menu handle for navigation
+{%- endcomment -%}
+
+<div
+  class="mobile-menu"
+  id="MobileMenu"
+  data-mobile-menu
+  aria-hidden="true"
+  role="dialog"
+  aria-modal="true"
+  aria-label="{{ 'header.menu' | t }}"
+>
+  <div class="mobile-menu__overlay" data-mobile-menu-overlay></div>
+
+  <div class="mobile-menu__panel">
+    {%- comment -%} Header with close button {%- endcomment -%}
+    <div class="mobile-menu__header">
+      <button
+        type="button"
+        class="mobile-menu__close icon-btn"
+        aria-label="{{ 'accessibility.close_menu' | t }}"
+        data-mobile-menu-close
+      >
+        {% render 'icon-close' %}
+      </button>
+    </div>
+
+    {%- comment -%} Search {%- endcomment -%}
+    <div class="mobile-menu__search">
+      <form action="{{ routes.search_url }}" method="get" role="search" class="mobile-menu__search-form">
+        <label for="MobileSearch" class="visually-hidden">{{ 'search.title' | t }}</label>
+        <input
+          type="search"
+          id="MobileSearch"
+          name="q"
+          class="mobile-menu__search-input"
+          placeholder="{{ 'search.placeholder' | t }}"
+          autocomplete="off"
+        >
+        <button type="submit" class="mobile-menu__search-submit icon-btn" aria-label="{{ 'search.submit' | t }}">
+          {% render 'icon-search' %}
+        </button>
+      </form>
+    </div>
+
+    {%- comment -%} Navigation {%- endcomment -%}
+    <nav class="mobile-menu__nav" aria-label="{{ 'header.menu' | t }}">
+      {%- if menu != blank -%}
+        <ul class="mobile-menu__list" role="list">
+          {%- for link in linklists[menu].links -%}
+            <li class="mobile-menu__item{% if link.links.size > 0 %} mobile-menu__item--has-children{% endif %}">
+              {%- if link.links.size > 0 -%}
+                <button
+                  type="button"
+                  class="mobile-menu__link mobile-menu__link--toggle"
+                  aria-expanded="false"
+                  aria-controls="MobileSubmenu-{{ forloop.index }}"
+                  data-mobile-submenu-toggle
+                >
+                  <span>{{ link.title }}</span>
+                  <span class="mobile-menu__icon">
+                    {% render 'icon-chevron' %}
+                  </span>
+                </button>
+
+                <div
+                  class="mobile-menu__submenu"
+                  id="MobileSubmenu-{{ forloop.index }}"
+                  data-mobile-submenu
+                  aria-hidden="true"
+                >
+                  <ul class="mobile-menu__sublist" role="list">
+                    {%- comment -%} View all link {%- endcomment -%}
+                    <li class="mobile-menu__subitem">
+                      <a href="{{ link.url }}" class="mobile-menu__sublink mobile-menu__sublink--all">
+                        {{ 'navigation.collections' | t }} {{ link.title }}
+                      </a>
+                    </li>
+
+                    {%- for child_link in link.links -%}
+                      {%- if child_link.links.size > 0 -%}
+                        <li class="mobile-menu__subitem mobile-menu__subitem--heading">
+                          <span class="mobile-menu__subheading">{{ child_link.title }}</span>
+                          <ul class="mobile-menu__subsublist" role="list">
+                            {%- for grandchild_link in child_link.links -%}
+                              <li class="mobile-menu__subsubitem">
+                                <a
+                                  href="{{ grandchild_link.url }}"
+                                  class="mobile-menu__subsublink{% if grandchild_link.active %} mobile-menu__subsublink--active{% endif %}"
+                                  {% if grandchild_link.current %}aria-current="page"{% endif %}
+                                >
+                                  {{ grandchild_link.title }}
+                                </a>
+                              </li>
+                            {%- endfor -%}
+                          </ul>
+                        </li>
+                      {%- else -%}
+                        <li class="mobile-menu__subitem">
+                          <a
+                            href="{{ child_link.url }}"
+                            class="mobile-menu__sublink{% if child_link.active %} mobile-menu__sublink--active{% endif %}"
+                            {% if child_link.current %}aria-current="page"{% endif %}
+                          >
+                            {{ child_link.title }}
+                          </a>
+                        </li>
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </ul>
+                </div>
+              {%- else -%}
+                <a
+                  href="{{ link.url }}"
+                  class="mobile-menu__link{% if link.active %} mobile-menu__link--active{% endif %}"
+                  {% if link.current %}aria-current="page"{% endif %}
+                >
+                  {{ link.title }}
+                </a>
+              {%- endif -%}
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </nav>
+
+    {%- comment -%} Account links {%- endcomment -%}
+    <div class="mobile-menu__footer">
+      {%- if shop.customer_accounts_enabled -%}
+        <a
+          href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
+          class="mobile-menu__footer-link"
+        >
+          {% render 'icon-account' %}
+          <span>
+            {%- if customer -%}
+              {{ 'customer.account.title' | t }}
+            {%- else -%}
+              {{ 'customer.login.title' | t }}
+            {%- endif -%}
+          </span>
+        </a>
+      {%- endif -%}
+
+      <a href="/pages/wishlist" class="mobile-menu__footer-link">
+        {% render 'icon-wishlist' %}
+        <span>{{ 'header.wishlist' | t }}</span>
+      </a>
+    </div>
+  </div>
+</div>

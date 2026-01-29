@@ -1,0 +1,144 @@
+{
+  "general": {
+    "skip_to_content": "Preskoči na sadržaj",
+    "search": "Pretraga",
+    "close": "Zatvori",
+    "menu": "Meni",
+    "cart": "Korpa",
+    "account": "Nalog",
+    "wishlist": "Lista želja",
+    "loading": "Učitavanje...",
+    "back": "Nazad",
+    "share": "Podeli",
+    "email": "Email",
+    "phone": "Telefon"
+  },
+  "header": {
+    "menu": "Meni",
+    "search": "Pretraga",
+    "cart": "Korpa",
+    "account": "Nalog",
+    "wishlist": "Lista želja",
+    "announcement": "Besplatna dostava za porudžbine preko 5.000 RSD"
+  },
+  "navigation": {
+    "women": "Žene",
+    "men": "Muškarci",
+    "kids": "Deca",
+    "new": "Novo",
+    "sale": "Sniženje",
+    "collections": "Kolekcije",
+    "about": "O nama",
+    "contact": "Kontakt"
+  },
+  "products": {
+    "add_to_cart": "Dodaj u korpu",
+    "sold_out": "Rasprodato",
+    "unavailable": "Nedostupno",
+    "price": "Cena",
+    "sale_price": "Akcijska cena",
+    "compare_at_price": "Redovna cena",
+    "quantity": "Količina",
+    "size": "Veličina",
+    "color": "Boja",
+    "description": "Opis",
+    "details": "Detalji",
+    "shipping": "Dostava",
+    "returns": "Povraćaj",
+    "size_guide": "Vodič za veličine",
+    "view_product": "Pogledaj proizvod",
+    "quick_view": "Brzi pregled"
+  },
+  "cart": {
+    "title": "Korpa",
+    "empty": "Vaša korpa je prazna",
+    "continue_shopping": "Nastavite kupovinu",
+    "subtotal": "Međuzbir",
+    "total": "Ukupno",
+    "checkout": "Završi kupovinu",
+    "remove": "Ukloni",
+    "update": "Ažuriraj",
+    "shipping_note": "Dostava se obračunava na sledećem koraku",
+    "item_count": {
+      "one": "{{ count }} artikal",
+      "other": "{{ count }} artikala"
+    }
+  },
+  "customer": {
+    "account": {
+      "title": "Moj nalog",
+      "orders": "Porudžbine",
+      "addresses": "Adrese",
+      "logout": "Odjava"
+    },
+    "login": {
+      "title": "Prijava",
+      "email": "Email adresa",
+      "password": "Lozinka",
+      "submit": "Prijavi se",
+      "forgot_password": "Zaboravili ste lozinku?",
+      "create_account": "Napravite nalog"
+    },
+    "register": {
+      "title": "Registracija",
+      "first_name": "Ime",
+      "last_name": "Prezime",
+      "email": "Email adresa",
+      "password": "Lozinka",
+      "submit": "Registruj se"
+    },
+    "orders": {
+      "title": "Istorija porudžbina",
+      "order_number": "Broj porudžbine",
+      "date": "Datum",
+      "status": "Status",
+      "total": "Ukupno",
+      "no_orders": "Još uvek nemate porudžbina"
+    },
+    "addresses": {
+      "title": "Adrese",
+      "add_new": "Dodaj novu adresu",
+      "edit": "Izmeni",
+      "delete": "Obriši",
+      "default": "Podrazumevana"
+    }
+  },
+  "footer": {
+    "newsletter": {
+      "title": "Prijavite se na naš newsletter",
+      "placeholder": "Vaša email adresa",
+      "submit": "Prijavi se",
+      "success": "Uspešno ste se prijavili!"
+    },
+    "links": {
+      "help": "Pomoć",
+      "shipping": "Dostava",
+      "returns": "Povraćaj",
+      "contact": "Kontakt",
+      "privacy": "Politika privatnosti",
+      "terms": "Uslovi korišćenja"
+    },
+    "social": {
+      "follow_us": "Pratite nas"
+    },
+    "copyright": "© {{ year }} Milutin. Sva prava zadržana."
+  },
+  "search": {
+    "title": "Pretraga",
+    "placeholder": "Šta tražite?",
+    "submit": "Pretraži",
+    "no_results": "Nema rezultata za \"{{ query }}\"",
+    "results_count": {
+      "one": "{{ count }} rezultat",
+      "other": "{{ count }} rezultata"
+    }
+  },
+  "accessibility": {
+    "skip_to_content": "Preskoči na sadržaj",
+    "close_menu": "Zatvori meni",
+    "open_menu": "Otvori meni",
+    "loading": "Učitavanje",
+    "increase_quantity": "Povećaj količinu",
+    "decrease_quantity": "Smanji količinu"
+  }
+}

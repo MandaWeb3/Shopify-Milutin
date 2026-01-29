@@ -1,0 +1,144 @@
+{
+  "general": {
+    "skip_to_content": "Skip to content",
+    "search": "Search",
+    "close": "Close",
+    "menu": "Menu",
+    "cart": "Cart",
+    "account": "Account",
+    "wishlist": "Wishlist",
+    "loading": "Loading...",
+    "back": "Back",
+    "share": "Share",
+    "email": "Email",
+    "phone": "Phone"
+  },
+  "header": {
+    "menu": "Menu",
+    "search": "Search",
+    "cart": "Cart",
+    "account": "Account",
+    "wishlist": "Wishlist",
+    "announcement": "Free shipping on orders over 5,000 RSD"
+  },
+  "navigation": {
+    "women": "Women",
+    "men": "Men",
+    "kids": "Kids",
+    "new": "New",
+    "sale": "Sale",
+    "collections": "Collections",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "products": {
+    "add_to_cart": "Add to cart",
+    "sold_out": "Sold out",
+    "unavailable": "Unavailable",
+    "price": "Price",
+    "sale_price": "Sale price",
+    "compare_at_price": "Regular price",
+    "quantity": "Quantity",
+    "size": "Size",
+    "color": "Color",
+    "description": "Description",
+    "details": "Details",
+    "shipping": "Shipping",
+    "returns": "Returns",
+    "size_guide": "Size guide",
+    "view_product": "View product",
+    "quick_view": "Quick view"
+  },
+  "cart": {
+    "title": "Cart",
+    "empty": "Your cart is empty",
+    "continue_shopping": "Continue shopping",
+    "subtotal": "Subtotal",
+    "total": "Total",
+    "checkout": "Checkout",
+    "remove": "Remove",
+    "update": "Update",
+    "shipping_note": "Shipping calculated at checkout",
+    "item_count": {
+      "one": "{{ count }} item",
+      "other": "{{ count }} items"
+    }
+  },
+  "customer": {
+    "account": {
+      "title": "My Account",
+      "orders": "Orders",
+      "addresses": "Addresses",
+      "logout": "Log out"
+    },
+    "login": {
+      "title": "Login",
+      "email": "Email address",
+      "password": "Password",
+      "submit": "Sign in",
+      "forgot_password": "Forgot password?",
+      "create_account": "Create account"
+    },
+    "register": {
+      "title": "Register",
+      "first_name": "First name",
+      "last_name": "Last name",
+      "email": "Email address",
+      "password": "Password",
+      "submit": "Register"
+    },
+    "orders": {
+      "title": "Order history",
+      "order_number": "Order number",
+      "date": "Date",
+      "status": "Status",
+      "total": "Total",
+      "no_orders": "You haven't placed any orders yet"
+    },
+    "addresses": {
+      "title": "Addresses",
+      "add_new": "Add new address",
+      "edit": "Edit",
+      "delete": "Delete",
+      "default": "Default"
+    }
+  },
+  "footer": {
+    "newsletter": {
+      "title": "Subscribe to our newsletter",
+      "placeholder": "Your email address",
+      "submit": "Subscribe",
+      "success": "Successfully subscribed!"
+    },
+    "links": {
+      "help": "Help",
+      "shipping": "Shipping",
+      "returns": "Returns",
+      "contact": "Contact",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service"
+    },
+    "social": {
+      "follow_us": "Follow us"
+    },
+    "copyright": "© {{ year }} Milutin. All rights reserved."
+  },
+  "search": {
+    "title": "Search",
+    "placeholder": "What are you looking for?",
+    "submit": "Search",
+    "no_results": "No results for \"{{ query }}\"",
+    "results_count": {
+      "one": "{{ count }} result",
+      "other": "{{ count }} results"
+    }
+  },
+  "accessibility": {
+    "skip_to_content": "Skip to content",
+    "close_menu": "Close menu",
+    "open_menu": "Open menu",
+    "loading": "Loading",
+    "increase_quantity": "Increase quantity",
+    "decrease_quantity": "Decrease quantity"
+  }
+}

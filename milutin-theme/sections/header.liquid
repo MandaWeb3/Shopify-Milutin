@@ -1,0 +1,200 @@
+{%- liquid
+  assign show_announcement = section.settings.show_announcement
+  assign announcement_text = section.settings.announcement_text
+  assign announcement_link = section.settings.announcement_link
+  assign sticky_header = section.settings.sticky_header
+  assign menu = section.settings.menu
+  assign transparent_header = section.settings.transparent_header
+-%}
+
+<header-component
+  class="header-wrapper{% if sticky_header %} header-wrapper--sticky{% endif %}{% if transparent_header %} header-wrapper--transparent{% endif %}"
+  data-sticky="{{ sticky_header }}"
+>
+  {%- if show_announcement and announcement_text != blank -%}
+    <div class="announcement-bar">
+      <div class="container">
+        {%- if announcement_link != blank -%}
+          <a href="{{ announcement_link }}" class="announcement-bar__link">
+            {{ announcement_text }}
+          </a>
+        {%- else -%}
+          <p class="announcement-bar__text">{{ announcement_text }}</p>
+        {%- endif -%}
+      </div>
+    </div>
+  {%- endif -%}
+
+  <div class="header" data-header>
+    <div class="container">
+      <div class="header__inner">
+        {%- comment -%} Mobile menu toggle {%- endcomment -%}
+        <button
+          class="header__menu-toggle icon-btn"
+          type="button"
+          aria-label="{{ 'accessibility.open_menu' | t }}"
+          aria-expanded="false"
+          aria-controls="MobileMenu"
+          data-mobile-menu-toggle
+        >
+          {% render 'icon-menu' %}
+        </button>
+
+        {%- comment -%} Desktop Navigation (Left) {%- endcomment -%}
+        <nav class="header__nav" aria-label="{{ 'header.menu' | t }}">
+          {%- if menu != blank -%}
+            <ul class="header__nav-list" role="list">
+              {%- for link in linklists[menu].links -%}
+                <li class="header__nav-item{% if link.links.size > 0 %} header__nav-item--has-dropdown{% endif %}">
+                  {%- if link.links.size > 0 -%}
+                    <button
+                      class="header__nav-link header__nav-link--toggle"
+                      type="button"
+                      aria-expanded="false"
+                      aria-controls="MegaMenu-{{ forloop.index }}"
+                      data-mega-menu-toggle
+                    >
+                      {{ link.title }}
+                      <span class="header__nav-icon">
+                        {% render 'icon-chevron' %}
+                      </span>
+                    </button>
+                    {% render 'mega-menu', link: link, index: forloop.index %}
+                  {%- else -%}
+                    <a
+                      href="{{ link.url }}"
+                      class="header__nav-link{% if link.active %} header__nav-link--active{% endif %}"
+                      {% if link.current %}aria-current="page"{% endif %}
+                    >
+                      {{ link.title }}
+                    </a>
+                  {%- endif -%}
+                </li>
+              {%- endfor -%}
+            </ul>
+          {%- endif -%}
+        </nav>
+
+        {%- comment -%} Logo (Center) {%- endcomment -%}
+        <div class="header__logo">
+          <a href="{{ routes.root_url }}" class="header__logo-link">
+            {%- if settings.logo != blank -%}
+              {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
+              {{ settings.logo | image_url: width: 300 | image_tag:
+                class: 'header__logo-image',
+                alt: logo_alt,
+                loading: 'eager',
+                width: settings.logo_width,
+                widths: '50, 100, 150, 200, 250, 300'
+              }}
+            {%- else -%}
+              <span class="header__logo-text">{{ shop.name }}</span>
+            {%- endif -%}
+          </a>
+        </div>
+
+        {%- comment -%} Icons (Right) {%- endcomment -%}
+        <div class="header__icons">
+          {%- comment -%} Search {%- endcomment -%}
+          <a
+            href="{{ routes.search_url }}"
+            class="header__icon icon-btn"
+            aria-label="{{ 'header.search' | t }}"
+          >
+            {% render 'icon-search' %}
+          </a>
+
+          {%- comment -%} Account (Desktop only) {%- endcomment -%}
+          {%- if shop.customer_accounts_enabled -%}
+            <a
+              href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
+              class="header__icon header__icon--account icon-btn"
+              aria-label="{{ 'header.account' | t }}"
+            >
+              {% render 'icon-account' %}
+            </a>
+          {%- endif -%}
+
+          {%- comment -%} Wishlist (Desktop only) {%- endcomment -%}
+          <a
+            href="/pages/wishlist"
+            class="header__icon header__icon--wishlist icon-btn"
+            aria-label="{{ 'header.wishlist' | t }}"
+          >
+            {% render 'icon-wishlist' %}
+          </a>
+
+          {%- comment -%} Cart {%- endcomment -%}
+          <a
+            href="{{ routes.cart_url }}"
+            class="header__icon header__icon--cart icon-btn"
+            aria-label="{{ 'header.cart' | t }}"
+            data-cart-icon
+          >
+            {% render 'icon-cart' %}
+            <span class="header__cart-count{% if cart.item_count == 0 %} header__cart-count--hidden{% endif %}" data-cart-count>
+              {{ cart.item_count }}
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%} Mobile Menu {%- endcomment -%}
+  {% render 'mobile-menu', menu: menu %}
+</header-component>
+
+{% schema %}
+{
+  "name": "Header",
+  "class": "section-header",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Announcement bar"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_announcement",
+      "label": "Show announcement bar",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "Announcement text",
+      "default": "Besplatna dostava za porudžbine preko 5.000 RSD"
+    },
+    {
+      "type": "url",
+      "id": "announcement_link",
+      "label": "Announcement link"
+    },
+    {
+      "type": "header",
+      "content": "Header"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "sticky_header",
+      "label": "Enable sticky header",
+      "default": true,
+      "info": "Header will stay at the top of the page while scrolling"
+    },
+    {
+      "type": "checkbox",
+      "id": "transparent_header",
+      "label": "Transparent header on homepage",
+      "default": false,
+      "info": "Header will be transparent over the first section on homepage"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,42 @@
+{%- comment -%}
+  Footer Section - Placeholder
+  Full implementation planned for next phase
+{%- endcomment -%}
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__inner">
+      <div class="footer__copyright">
+        <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. {{ 'footer.copyright' | t: year: 'now' | date: '%Y' }}</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding: var(--spacing-8) 0;
+    border-top: 1px solid var(--color-border);
+    margin-top: auto;
+  }
+
+  .footer__inner {
+    text-align: center;
+  }
+
+  .footer__copyright {
+    font-size: var(--font-size-sm);
+    color: var(--color-accent);
+  }
+
+  .footer__copyright p {
+    margin: 0;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": []
+}
+{% endschema %}

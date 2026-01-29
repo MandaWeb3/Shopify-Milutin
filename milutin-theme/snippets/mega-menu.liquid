@@ -1,0 +1,64 @@
+{%- comment -%}
+  Mega Menu Dropdown
+  - Full-width dropdown for desktop navigation
+  - Shows child links in columns
+  - Supports featured image/promo
+
+  Parameters:
+  - link: Parent link object with child links
+  - index: Index for unique ID
+{%- endcomment -%}
+
+<div
+  class="mega-menu"
+  id="MegaMenu-{{ index }}"
+  data-mega-menu
+  aria-hidden="true"
+>
+  <div class="mega-menu__inner">
+    <div class="container">
+      <div class="mega-menu__content">
+        {%- comment -%} Navigation columns {%- endcomment -%}
+        <div class="mega-menu__links">
+          {%- for child_link in link.links -%}
+            <div class="mega-menu__column">
+              {%- if child_link.links.size > 0 -%}
+                <span class="mega-menu__heading">{{ child_link.title }}</span>
+                <ul class="mega-menu__list" role="list">
+                  {%- for grandchild_link in child_link.links -%}
+                    <li class="mega-menu__item">
+                      <a
+                        href="{{ grandchild_link.url }}"
+                        class="mega-menu__link{% if grandchild_link.active %} mega-menu__link--active{% endif %}"
+                        {% if grandchild_link.current %}aria-current="page"{% endif %}
+                      >
+                        {{ grandchild_link.title }}
+                      </a>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              {%- else -%}
+                <a
+                  href="{{ child_link.url }}"
+                  class="mega-menu__heading mega-menu__heading--link"
+                  {% if child_link.current %}aria-current="page"{% endif %}
+                >
+                  {{ child_link.title }}
+                </a>
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        </div>
+
+        {%- comment -%} Featured promo area - can be customized per menu item {%- endcomment -%}
+        <div class="mega-menu__promo">
+          <a href="{{ link.url }}" class="mega-menu__promo-link">
+            <span class="mega-menu__promo-text">
+              {{ 'navigation.collections' | t }} {{ link.title }}
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
