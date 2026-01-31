@@ -1,25 +1,43 @@
 {%- comment -%}
   Product Card
-  Displays product with image, title, price
+  Displays product with image, title, price, and quick actions
 
   Parameters:
   - product: Product object (required)
   - show_secondary_image: Boolean (optional, default: true)
+  - show_quick_view: Boolean (optional, default: true)
+  - show_wishlist: Boolean (optional, default: true)
+  - show_quick_add: Boolean (optional, default: true)
   - lazy_load: Boolean (optional, default: true)
 {%- endcomment -%}
 
 {%- liquid
   assign show_secondary_image = show_secondary_image | default: true
+  assign show_quick_view = show_quick_view | default: true
+  assign show_wishlist = show_wishlist | default: true
+  assign show_quick_add = show_quick_add | default: true
   assign lazy_load = lazy_load | default: true
   assign loading = 'lazy'
   if lazy_load == false
     assign loading = 'eager'
   endif
+
+  assign has_sizes = false
+  assign size_option_index = nil
+  for option in product.options_with_values
+    assign option_name_lower = option.name | downcase
+    if option_name_lower == 'size' or option_name_lower == 'veličina'
+      assign has_sizes = true
+      assign size_option_index = forloop.index0
+      assign size_option = option
+      break
+    endif
+  endfor
 -%}
 
-<div class="product-card">
-  <a href="{{ product.url }}" class="product-card__link">
-    <div class="product-card__media">
+<div class="product-card" data-product-card data-product-id="{{ product.id }}">
+  <div class="product-card__media">
+    <a href="{{ product.url }}" class="product-card__media-link">
       {%- if product.featured_image -%}
         {{ product.featured_image | image_url: width: 600 | image_tag:
           class: 'product-card__image product-card__image--primary',
@@ -41,42 +59,119 @@
           {{ 'product-1' | placeholder_svg_tag: 'product-card__placeholder-svg' }}
         </div>
       {%- endif -%}
+    </a>
 
-      {%- if product.available == false -%}
-        <span class="product-card__badge product-card__badge--sold-out">
-          {{ 'products.sold_out' | t }}
-        </span>
-      {%- elsif product.compare_at_price > product.price -%}
-        {%- assign discount = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price -%}
-        <span class="product-card__badge product-card__badge--sale">
-          -{{ discount }}%
-        </span>
+    {%- comment -%} Badges {%- endcomment -%}
+    {%- if product.available == false -%}
+      <span class="product-card__badge product-card__badge--sold-out">
+        {{ 'products.sold_out' | t }}
+      </span>
+    {%- elsif product.compare_at_price > product.price -%}
+      {%- assign discount = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price -%}
+      <span class="product-card__badge product-card__badge--sale">
+        -{{ discount }}%
+      </span>
+    {%- endif -%}
+
+    {%- comment -%} Quick Actions {%- endcomment -%}
+    <div class="product-card__actions">
+      {%- if show_wishlist -%}
+        <button
+          type="button"
+          class="product-card__action product-card__action--wishlist"
+          data-wishlist-toggle
+          data-product-id="{{ product.id }}"
+          data-product-handle="{{ product.handle }}"
+          data-product-title="{{ product.title | escape }}"
+          data-product-image="{{ product.featured_image | image_url: width: 200 }}"
+          data-product-price="{{ product.price | money }}"
+          data-product-url="{{ product.url }}"
+          aria-label="{{ 'products.add_to_wishlist' | t }}"
+        >
+          {% render 'icon-wishlist' %}
+        </button>
+      {%- endif -%}
+
+      {%- if show_quick_view -%}
+        <button
+          type="button"
+          class="product-card__action product-card__action--quick-view"
+          data-quick-view
+          data-product-url="{{ product.url }}"
+          aria-label="{{ 'products.quick_view' | t }}"
+        >
+          {% render 'icon-quick-view' %}
+        </button>
       {%- endif -%}
     </div>
 
-    <div class="product-card__info">
-      <h3 class="product-card__title">{{ product.title }}</h3>
-
-      <div class="product-card__price">
-        {%- if product.compare_at_price > product.price -%}
-          <span class="product-card__price-sale">{{ product.price | money }}</span>
-          <s class="product-card__price-compare">{{ product.compare_at_price | money }}</s>
-        {%- else -%}
-          <span class="product-card__price-regular">{{ product.price | money }}</span>
-        {%- endif -%}
+    {%- comment -%} Quick Add Sizes {%- endcomment -%}
+    {%- if show_quick_add and product.available and has_sizes -%}
+      <div class="product-card__quick-add" data-quick-add>
+        <div class="product-card__sizes">
+          {%- for value in size_option.values -%}
+            {%- liquid
+              assign variant_available = false
+              for variant in product.variants
+                if variant.options[size_option_index] == value and variant.available
+                  assign variant_available = true
+                  assign variant_id = variant.id
+                  break
+                endif
+              endfor
+            -%}
+            <button
+              type="button"
+              class="product-card__size {% unless variant_available %}product-card__size--disabled{% endunless %}"
+              data-quick-add-size
+              data-variant-id="{{ variant_id }}"
+              {% unless variant_available %}disabled{% endunless %}
+              aria-label="{{ 'products.add_size' | t: size: value }}"
+            >
+              {{ value }}
+            </button>
+          {%- endfor -%}
+        </div>
       </div>
+    {%- elsif show_quick_add and product.available and product.variants.size == 1 -%}
+      <div class="product-card__quick-add product-card__quick-add--single" data-quick-add>
+        <button
+          type="button"
+          class="product-card__add-btn"
+          data-quick-add-single
+          data-variant-id="{{ product.variants.first.id }}"
+        >
+          {{ 'products.add_to_cart' | t }}
+        </button>
+      </div>
+    {%- endif -%}
+  </div>
 
-      {%- if product.options_with_values.size > 0 -%}
-        {%- for option in product.options_with_values -%}
-          {%- if option.name == 'Color' or option.name == 'Boja' -%}
-            {%- if option.values.size > 1 -%}
-              <div class="product-card__colors">
-                <span class="product-card__colors-count">{{ option.values.size }} {{ 'products.color' | t | downcase }}</span>
-              </div>
-            {%- endif -%}
-          {%- endif -%}
-        {%- endfor -%}
+  <div class="product-card__info">
+    <a href="{{ product.url }}" class="product-card__link">
+      <h3 class="product-card__title">{{ product.title }}</h3>
+    </a>
+
+    <div class="product-card__price">
+      {%- if product.compare_at_price > product.price -%}
+        <span class="product-card__price-sale">{{ product.price | money }}</span>
+        <s class="product-card__price-compare">{{ product.compare_at_price | money }}</s>
+      {%- else -%}
+        <span class="product-card__price-regular">{{ product.price | money }}</span>
       {%- endif -%}
     </div>
-  </a>
+
+    {%- if product.options_with_values.size > 0 -%}
+      {%- for option in product.options_with_values -%}
+        {%- assign option_name_lower = option.name | downcase -%}
+        {%- if option_name_lower == 'color' or option_name_lower == 'boja' -%}
+          {%- if option.values.size > 1 -%}
+            <div class="product-card__colors">
+              <span class="product-card__colors-count">{{ option.values.size }} {{ 'products.colors' | t | downcase }}</span>
+            </div>
+          {%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+  </div>
 </div>

@@ -79,7 +79,12 @@
     "view_all": "Pogledaj sve",
     "sku": "Šifra",
     "media_thumbnail": "Učitaj sliku {{ position }} u prikaz galerije",
-    "related_products": "Možda vam se svidi"
+    "related_products": "Možda vam se svidi",
+    "quick_view": "Brzi pregled",
+    "add_to_wishlist": "Dodaj u listu želja",
+    "remove_from_wishlist": "Ukloni iz liste želja",
+    "add_size": "Dodaj veličinu {{ size }}",
+    "colors": "boje"
   },
   "cart": {
     "title": "Korpa",

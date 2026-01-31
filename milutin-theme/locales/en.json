@@ -79,7 +79,12 @@
     "view_all": "View all",
     "sku": "SKU",
     "media_thumbnail": "Load image {{ position }} in gallery view",
-    "related_products": "You may also like"
+    "related_products": "You may also like",
+    "quick_view": "Quick view",
+    "add_to_wishlist": "Add to wishlist",
+    "remove_from_wishlist": "Remove from wishlist",
+    "add_size": "Add size {{ size }}",
+    "colors": "colors"
   },
   "cart": {
     "title": "Cart",

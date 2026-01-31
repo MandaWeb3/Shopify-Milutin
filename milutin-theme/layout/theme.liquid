@@ -38,6 +38,7 @@
     {{ 'section-product.css' | asset_url | stylesheet_tag }}
     {{ 'section-cart.css' | asset_url | stylesheet_tag }}
     {{ 'section-customers.css' | asset_url | stylesheet_tag }}
+    {{ 'product-card-enhancements.css' | asset_url | stylesheet_tag }}
 
     {%- unless settings.type_body_font.system? -%}
       {{ settings.type_body_font | font_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: 'anonymous' }}
@@ -84,7 +85,9 @@
         added: {{ 'products.added' | t | json }},
         soldOut: {{ 'products.sold_out' | t | json }},
         unavailable: {{ 'products.unavailable' | t | json }},
-        sale: {{ 'products.sale' | t | json }}
+        sale: {{ 'products.sale' | t | json }},
+        addToWishlist: {{ 'products.add_to_wishlist' | t | json }},
+        removeFromWishlist: {{ 'products.remove_from_wishlist' | t | json }}
       };
     </script>
   </head>
@@ -110,6 +113,9 @@
     <script src="{{ 'section-collection.js' | asset_url }}" defer></script>
     <script src="{{ 'section-product.js' | asset_url }}" defer></script>
     <script src="{{ 'section-cart.js' | asset_url }}" defer></script>
+    <script src="{{ 'product-card-enhancements.js' | asset_url }}" defer></script>
+
+    {% render 'quick-view-modal' %}
 
     {%- if settings.cart_type == 'drawer' -%}
       {% render 'cart-drawer' %}
