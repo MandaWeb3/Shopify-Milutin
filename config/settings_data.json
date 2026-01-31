@@ -1,5 +1,16 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "current": {
+    "logo": "shopify://shop_images/come-up-with-something-similar-but-dont-overcompli_1_-2.jpg",
+    "logo_width": 300,
     "color_primary": "#000000",
     "color_secondary": "#FFFFFF",
     "color_accent": "#757575",
@@ -10,16 +21,15 @@
     "color_success": "#388E3C",
     "type_header_font": "helvetica_n4",
     "type_body_font": "helvetica_n4",
-    "logo_width": 120,
     "cart_type": "drawer",
     "sections": {
       "header": {
         "type": "header",
         "settings": {
-          "sticky_header": true,
           "show_announcement": true,
           "announcement_text": "Besplatna dostava za porudžbine preko 5.000 RSD",
-          "announcement_link": ""
+          "announcement_link": "",
+          "sticky_header": true
         }
       },
       "footer": {
