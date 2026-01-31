@@ -11,7 +11,32 @@
     "back": "Nazad",
     "share": "Podeli",
     "email": "Email",
-    "phone": "Telefon"
+    "phone": "Telefon",
+    "404": {
+      "title": "Stranica nije pronađena",
+      "subtext": "Stranica koju tražite ne postoji ili je premeštena.",
+      "back_home": "Nazad na početnu",
+      "browse_products": "Pogledaj proizvode",
+      "search_label": "Ili pretražite naš sajt"
+    }
+  },
+  "blog": {
+    "article_count": "{{ count }} članaka",
+    "no_articles": "Nema članaka u ovom blogu",
+    "read_more": "Pročitaj više",
+    "by_author": "Autor: {{ author }}",
+    "tags": "Tagovi",
+    "previous_article": "Prethodni članak",
+    "next_article": "Sledeći članak",
+    "back_to_blog": "Nazad na blog",
+    "comments": "Komentari",
+    "leave_comment": "Ostavite komentar",
+    "comment_author": "Ime",
+    "comment_email": "Email",
+    "comment_body": "Komentar",
+    "comment_submit": "Pošalji komentar",
+    "comment_pending": "Vaš komentar je poslat i čeka odobrenje.",
+    "comment_posted": "Vaš komentar je objavljen."
   },
   "header": {
     "menu": "Meni",

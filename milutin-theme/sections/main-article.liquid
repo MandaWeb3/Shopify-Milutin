@@ -1,0 +1,440 @@
+<article class="article-section">
+  <div class="container">
+    <header class="article-section__header">
+      {%- if section.settings.show_date -%}
+        <time class="article-section__date" datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+          {{ article.published_at | date: "%d.%m.%Y" }}
+        </time>
+      {%- endif -%}
+
+      <h1 class="article-section__title">{{ article.title }}</h1>
+
+      {%- if section.settings.show_author -%}
+        <p class="article-section__author">{{ 'blog.by_author' | t: author: article.author }}</p>
+      {%- endif -%}
+    </header>
+
+    {%- if article.image and section.settings.show_image -%}
+      <div class="article-section__image">
+        {{ article.image | image_url: width: 1400 | image_tag:
+          loading: 'eager',
+          widths: '600, 900, 1200, 1400',
+          class: 'article-section__img'
+        }}
+      </div>
+    {%- endif -%}
+
+    <div class="article-section__content rte">
+      {{ article.content }}
+    </div>
+
+    {%- if section.settings.show_tags and article.tags.size > 0 -%}
+      <div class="article-section__tags">
+        <span class="article-section__tags-label">{{ 'blog.tags' | t }}:</span>
+        {%- for tag in article.tags -%}
+          <a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="article-section__tag">{{ tag }}</a>
+          {%- unless forloop.last -%}, {% endunless -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- if section.settings.show_share -%}
+      <div class="article-section__share">
+        <span class="article-section__share-label">{{ 'general.share' | t }}:</span>
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ shop.url }}{{ article.url }}" target="_blank" rel="noopener" class="article-section__share-link" aria-label="Share on Facebook">
+          {% render 'icon-facebook' %}
+        </a>
+        <a href="https://twitter.com/intent/tweet?url={{ shop.url }}{{ article.url }}&text={{ article.title | url_encode }}" target="_blank" rel="noopener" class="article-section__share-link" aria-label="Share on Twitter">
+          {% render 'icon-twitter' %}
+        </a>
+        <a href="https://pinterest.com/pin/create/button/?url={{ shop.url }}{{ article.url }}&media={{ article.image | image_url: width: 1200 }}&description={{ article.title | url_encode }}" target="_blank" rel="noopener" class="article-section__share-link" aria-label="Share on Pinterest">
+          {% render 'icon-pinterest' %}
+        </a>
+      </div>
+    {%- endif -%}
+
+    <nav class="article-section__nav">
+      {%- if blog.previous_article -%}
+        <a href="{{ blog.previous_article }}" class="article-section__nav-link article-section__nav-link--prev">
+          <span class="article-section__nav-label">{{ 'blog.previous_article' | t }}</span>
+        </a>
+      {%- endif -%}
+
+      <a href="{{ blog.url }}" class="article-section__nav-link article-section__nav-link--all">
+        {{ 'blog.back_to_blog' | t }}
+      </a>
+
+      {%- if blog.next_article -%}
+        <a href="{{ blog.next_article }}" class="article-section__nav-link article-section__nav-link--next">
+          <span class="article-section__nav-label">{{ 'blog.next_article' | t }}</span>
+        </a>
+      {%- endif -%}
+    </nav>
+
+    {%- if blog.comments_enabled? and section.settings.show_comments -%}
+      <div class="article-section__comments" id="comments">
+        <h2 class="article-section__comments-title">
+          {{ 'blog.comments' | t }} ({{ article.comments_count }})
+        </h2>
+
+        {%- if article.comments.size > 0 -%}
+          {%- paginate article.comments by 10 -%}
+            <div class="article-comments">
+              {%- for comment in article.comments -%}
+                <div class="article-comment">
+                  <p class="article-comment__author">{{ comment.author }}</p>
+                  <time class="article-comment__date" datetime="{{ comment.created_at | date: '%Y-%m-%d' }}">
+                    {{ comment.created_at | date: "%d.%m.%Y" }}
+                  </time>
+                  <div class="article-comment__content">{{ comment.content }}</div>
+                </div>
+              {%- endfor -%}
+            </div>
+
+            {%- if paginate.pages > 1 -%}
+              <nav class="pagination">
+                {%- if paginate.previous -%}
+                  <a href="{{ paginate.previous.url }}#comments">{{ 'collections.previous' | t }}</a>
+                {%- endif -%}
+                {%- if paginate.next -%}
+                  <a href="{{ paginate.next.url }}#comments">{{ 'collections.next' | t }}</a>
+                {%- endif -%}
+              </nav>
+            {%- endif -%}
+          {%- endpaginate -%}
+        {%- endif -%}
+
+        {%- form 'new_comment', article, class: 'comment-form' -%}
+          <h3 class="comment-form__title">{{ 'blog.leave_comment' | t }}</h3>
+
+          {%- if form.posted_successfully? -%}
+            <div class="comment-form__success">
+              {%- if blog.moderated? -%}
+                {{ 'blog.comment_pending' | t }}
+              {%- else -%}
+                {{ 'blog.comment_posted' | t }}
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+
+          {%- if form.errors -%}
+            <div class="comment-form__errors">
+              {{ form.errors | default_errors }}
+            </div>
+          {%- endif -%}
+
+          <div class="comment-form__fields">
+            <div class="comment-form__field">
+              <label for="CommentAuthor" class="comment-form__label">{{ 'blog.comment_author' | t }}</label>
+              <input type="text" id="CommentAuthor" name="comment[author]" value="{{ form.author }}" class="comment-form__input" required>
+            </div>
+
+            <div class="comment-form__field">
+              <label for="CommentEmail" class="comment-form__label">{{ 'blog.comment_email' | t }}</label>
+              <input type="email" id="CommentEmail" name="comment[email]" value="{{ form.email }}" class="comment-form__input" required>
+            </div>
+
+            <div class="comment-form__field comment-form__field--full">
+              <label for="CommentBody" class="comment-form__label">{{ 'blog.comment_body' | t }}</label>
+              <textarea id="CommentBody" name="comment[body]" class="comment-form__textarea" required>{{ form.body }}</textarea>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn--primary">{{ 'blog.comment_submit' | t }}</button>
+        {%- endform -%}
+      </div>
+    {%- endif -%}
+  </div>
+</article>
+
+<style>
+  .article-section {
+    padding: var(--spacing-8) 0 var(--spacing-16);
+  }
+
+  @media (min-width: 750px) {
+    .article-section {
+      padding: var(--spacing-12) 0 var(--spacing-20);
+    }
+  }
+
+  .article-section__header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto var(--spacing-8);
+  }
+
+  .article-section__date {
+    font-size: var(--font-size-xs);
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+  }
+
+  .article-section__title {
+    font-size: var(--font-size-xl);
+    font-weight: 300;
+    letter-spacing: var(--letter-spacing-wider);
+    margin: var(--spacing-2) 0;
+  }
+
+  @media (min-width: 750px) {
+    .article-section__title {
+      font-size: var(--font-size-2xl);
+    }
+  }
+
+  .article-section__author {
+    font-size: var(--font-size-sm);
+    color: var(--color-accent);
+    margin: 0;
+  }
+
+  .article-section__image {
+    margin-bottom: var(--spacing-8);
+  }
+
+  .article-section__img {
+    width: 100%;
+    height: auto;
+    max-height: 600px;
+    object-fit: cover;
+  }
+
+  .article-section__content {
+    max-width: 800px;
+    margin: 0 auto var(--spacing-8);
+  }
+
+  .article-section__tags {
+    max-width: 800px;
+    margin: 0 auto var(--spacing-6);
+    font-size: var(--font-size-sm);
+  }
+
+  .article-section__tags-label {
+    color: var(--color-accent);
+  }
+
+  .article-section__tag {
+    color: var(--color-primary);
+  }
+
+  .article-section__share {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-3);
+    max-width: 800px;
+    margin: 0 auto var(--spacing-8);
+  }
+
+  .article-section__share-label {
+    font-size: var(--font-size-sm);
+    color: var(--color-accent);
+  }
+
+  .article-section__share-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    color: var(--color-accent);
+    transition: color var(--transition-fast);
+  }
+
+  .article-section__share-link:hover {
+    color: var(--color-primary);
+  }
+
+  .article-section__share-link svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .article-section__nav {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-6);
+    max-width: 800px;
+    margin: 0 auto;
+    padding-top: var(--spacing-8);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .article-section__nav-link {
+    font-size: var(--font-size-sm);
+    color: var(--color-accent);
+    text-decoration: underline;
+  }
+
+  .article-section__nav-link:hover {
+    color: var(--color-primary);
+  }
+
+  /* Comments */
+  .article-section__comments {
+    max-width: 800px;
+    margin: var(--spacing-10) auto 0;
+    padding-top: var(--spacing-8);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .article-section__comments-title {
+    font-size: var(--font-size-lg);
+    font-weight: 500;
+    margin: 0 0 var(--spacing-6);
+  }
+
+  .article-comments {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-6);
+    margin-bottom: var(--spacing-8);
+  }
+
+  .article-comment {
+    padding: var(--spacing-4);
+    background-color: var(--color-background);
+    border: 1px solid var(--color-border);
+  }
+
+  .article-comment__author {
+    font-weight: 500;
+    margin: 0 0 var(--spacing-1);
+  }
+
+  .article-comment__date {
+    font-size: var(--font-size-xs);
+    color: var(--color-accent);
+  }
+
+  .article-comment__content {
+    margin-top: var(--spacing-3);
+    font-size: var(--font-size-sm);
+    line-height: 1.6;
+  }
+
+  /* Comment Form */
+  .comment-form {
+    margin-top: var(--spacing-8);
+  }
+
+  .comment-form__title {
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+    margin: 0 0 var(--spacing-4);
+  }
+
+  .comment-form__success {
+    padding: var(--spacing-4);
+    background-color: rgba(var(--color-success-rgb, 22, 163, 74), 0.1);
+    border: 1px solid var(--color-success);
+    color: var(--color-success);
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--spacing-4);
+  }
+
+  .comment-form__errors {
+    padding: var(--spacing-4);
+    background-color: rgba(var(--color-error-rgb, 220, 38, 38), 0.1);
+    border: 1px solid var(--color-error);
+    color: var(--color-error);
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--spacing-4);
+  }
+
+  .comment-form__fields {
+    display: grid;
+    gap: var(--spacing-4);
+    margin-bottom: var(--spacing-4);
+  }
+
+  @media (min-width: 500px) {
+    .comment-form__fields {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .comment-form__field--full {
+      grid-column: 1 / -1;
+    }
+  }
+
+  .comment-form__label {
+    display: block;
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+    margin-bottom: var(--spacing-2);
+  }
+
+  .comment-form__input,
+  .comment-form__textarea {
+    width: 100%;
+    padding: var(--spacing-3);
+    font-size: var(--font-size-base);
+    font-family: inherit;
+    border: 1px solid var(--color-border);
+    background: var(--color-background);
+  }
+
+  .comment-form__input:focus,
+  .comment-form__textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+  }
+
+  .comment-form__textarea {
+    min-height: 150px;
+    resize: vertical;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Article",
+  "tag": "section",
+  "class": "section-main-article",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_image",
+      "label": "Show featured image",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_date",
+      "label": "Show date",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_author",
+      "label": "Show author",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_tags",
+      "label": "Show tags",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_share",
+      "label": "Show share buttons",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_comments",
+      "label": "Show comments",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

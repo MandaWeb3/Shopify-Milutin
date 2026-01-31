@@ -11,7 +11,32 @@
     "back": "Back",
     "share": "Share",
     "email": "Email",
-    "phone": "Phone"
+    "phone": "Phone",
+    "404": {
+      "title": "Page not found",
+      "subtext": "The page you're looking for doesn't exist or has been moved.",
+      "back_home": "Back to home",
+      "browse_products": "Browse products",
+      "search_label": "Or search our site"
+    }
+  },
+  "blog": {
+    "article_count": "{{ count }} articles",
+    "no_articles": "No articles in this blog",
+    "read_more": "Read more",
+    "by_author": "By {{ author }}",
+    "tags": "Tags",
+    "previous_article": "Previous article",
+    "next_article": "Next article",
+    "back_to_blog": "Back to blog",
+    "comments": "Comments",
+    "leave_comment": "Leave a comment",
+    "comment_author": "Name",
+    "comment_email": "Email",
+    "comment_body": "Comment",
+    "comment_submit": "Post comment",
+    "comment_pending": "Your comment has been submitted and is awaiting approval.",
+    "comment_posted": "Your comment has been posted."
   },
   "header": {
     "menu": "Menu",

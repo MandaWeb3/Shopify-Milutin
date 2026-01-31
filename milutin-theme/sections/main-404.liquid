@@ -1,0 +1,148 @@
+<section class="page-404">
+  <div class="container">
+    <div class="page-404__content">
+      <h1 class="page-404__title">404</h1>
+      <p class="page-404__subtitle">{{ 'general.404.title' | t }}</p>
+      <p class="page-404__text">{{ 'general.404.subtext' | t }}</p>
+
+      <div class="page-404__actions">
+        <a href="{{ routes.root_url }}" class="btn btn--primary">
+          {{ 'general.404.back_home' | t }}
+        </a>
+        <a href="{{ routes.all_products_collection_url }}" class="btn btn--secondary">
+          {{ 'general.404.browse_products' | t }}
+        </a>
+      </div>
+
+      {%- if section.settings.show_search -%}
+        <div class="page-404__search">
+          <p class="page-404__search-label">{{ 'general.404.search_label' | t }}</p>
+          <form action="{{ routes.search_url }}" method="get" class="page-404__search-form">
+            <input
+              type="search"
+              name="q"
+              placeholder="{{ 'search.placeholder' | t }}"
+              class="page-404__search-input"
+            >
+            <button type="submit" class="page-404__search-btn btn btn--primary">
+              {{ 'search.submit' | t }}
+            </button>
+          </form>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+<style>
+  .page-404 {
+    padding: var(--spacing-16) 0;
+    text-align: center;
+  }
+
+  @media (min-width: 750px) {
+    .page-404 {
+      padding: var(--spacing-20) 0;
+    }
+  }
+
+  .page-404__content {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .page-404__title {
+    font-size: 120px;
+    font-weight: 200;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin: 0 0 var(--spacing-4);
+    color: var(--color-border);
+  }
+
+  @media (min-width: 750px) {
+    .page-404__title {
+      font-size: 180px;
+    }
+  }
+
+  .page-404__subtitle {
+    font-size: var(--font-size-xl);
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wider);
+    margin: 0 0 var(--spacing-4);
+  }
+
+  .page-404__text {
+    font-size: var(--font-size-base);
+    color: var(--color-accent);
+    margin: 0 0 var(--spacing-8);
+  }
+
+  .page-404__actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+    margin-bottom: var(--spacing-10);
+  }
+
+  @media (min-width: 500px) {
+    .page-404__actions {
+      flex-direction: row;
+      justify-content: center;
+    }
+  }
+
+  .page-404__search {
+    padding-top: var(--spacing-8);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .page-404__search-label {
+    font-size: var(--font-size-sm);
+    color: var(--color-accent);
+    margin-bottom: var(--spacing-4);
+  }
+
+  .page-404__search-form {
+    display: flex;
+    gap: var(--spacing-2);
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .page-404__search-input {
+    flex: 1;
+    height: 48px;
+    padding: 0 var(--spacing-4);
+    font-size: var(--font-size-base);
+    border: 1px solid var(--color-border);
+    background: var(--color-background);
+  }
+
+  .page-404__search-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+  }
+
+  .page-404__search-btn {
+    flex-shrink: 0;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "404 Page",
+  "tag": "section",
+  "class": "section-main-404",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_search",
+      "label": "Show search bar",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

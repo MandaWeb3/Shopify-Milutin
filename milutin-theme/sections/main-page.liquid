@@ -1,0 +1,136 @@
+<section class="page-section">
+  <div class="container">
+    {%- if section.settings.show_title -%}
+      <h1 class="page-section__title">{{ page.title }}</h1>
+    {%- endif -%}
+
+    <div class="page-section__content rte">
+      {{ page.content }}
+    </div>
+  </div>
+</section>
+
+<style>
+  .page-section {
+    padding: var(--spacing-8) 0 var(--spacing-16);
+  }
+
+  @media (min-width: 750px) {
+    .page-section {
+      padding: var(--spacing-12) 0 var(--spacing-20);
+    }
+  }
+
+  .page-section__title {
+    font-size: var(--font-size-xl);
+    font-weight: 300;
+    letter-spacing: var(--letter-spacing-wider);
+    text-transform: uppercase;
+    text-align: center;
+    margin: 0 0 var(--spacing-8);
+  }
+
+  @media (min-width: 750px) {
+    .page-section__title {
+      font-size: var(--font-size-2xl);
+      margin-bottom: var(--spacing-10);
+    }
+  }
+
+  .page-section__content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  /* Rich Text Editor Styles */
+  .rte {
+    font-size: var(--font-size-base);
+    line-height: 1.7;
+    color: var(--color-foreground);
+  }
+
+  .rte h2 {
+    font-size: var(--font-size-lg);
+    font-weight: 500;
+    margin: var(--spacing-8) 0 var(--spacing-4);
+  }
+
+  .rte h3 {
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+    margin: var(--spacing-6) 0 var(--spacing-3);
+  }
+
+  .rte p {
+    margin: 0 0 var(--spacing-4);
+  }
+
+  .rte a {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
+
+  .rte a:hover {
+    text-decoration: none;
+  }
+
+  .rte ul,
+  .rte ol {
+    margin: 0 0 var(--spacing-4);
+    padding-left: var(--spacing-6);
+  }
+
+  .rte li {
+    margin-bottom: var(--spacing-2);
+  }
+
+  .rte img {
+    max-width: 100%;
+    height: auto;
+    margin: var(--spacing-6) 0;
+  }
+
+  .rte blockquote {
+    margin: var(--spacing-6) 0;
+    padding: var(--spacing-4) var(--spacing-6);
+    border-left: 3px solid var(--color-primary);
+    font-style: italic;
+    color: var(--color-accent);
+  }
+
+  .rte table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--spacing-6) 0;
+  }
+
+  .rte th,
+  .rte td {
+    padding: var(--spacing-3);
+    border: 1px solid var(--color-border);
+    text-align: left;
+  }
+
+  .rte th {
+    background-color: var(--color-border);
+    font-weight: 500;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Page",
+  "tag": "section",
+  "class": "section-main-page",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show page title",
+      "default": true
+    }
+  ]
+}
+{% endschema %}
