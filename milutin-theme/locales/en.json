@@ -33,8 +33,11 @@
   },
   "products": {
     "add_to_cart": "Add to cart",
+    "adding": "Adding...",
+    "added": "Added!",
     "sold_out": "Sold out",
     "unavailable": "Unavailable",
+    "sale": "Sale",
     "price": "Price",
     "sale_price": "Sale price",
     "compare_at_price": "Regular price",
@@ -48,7 +51,10 @@
     "size_guide": "Size guide",
     "view_product": "View product",
     "quick_view": "Quick view",
-    "view_all": "View all"
+    "view_all": "View all",
+    "sku": "SKU",
+    "media_thumbnail": "Load image {{ position }} in gallery view",
+    "related_products": "You may also like"
   },
   "cart": {
     "title": "Cart",

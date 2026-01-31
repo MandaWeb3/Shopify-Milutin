@@ -33,8 +33,11 @@
   },
   "products": {
     "add_to_cart": "Dodaj u korpu",
+    "adding": "Dodavanje...",
+    "added": "Dodato!",
     "sold_out": "Rasprodato",
     "unavailable": "Nedostupno",
+    "sale": "Sniženo",
     "price": "Cena",
     "sale_price": "Akcijska cena",
     "compare_at_price": "Redovna cena",
@@ -48,7 +51,10 @@
     "size_guide": "Vodič za veličine",
     "view_product": "Pogledaj proizvod",
     "quick_view": "Brzi pregled",
-    "view_all": "Pogledaj sve"
+    "view_all": "Pogledaj sve",
+    "sku": "Šifra",
+    "media_thumbnail": "Učitaj sliku {{ position }} u prikaz galerije",
+    "related_products": "Možda vam se svidi"
   },
   "cart": {
     "title": "Korpa",

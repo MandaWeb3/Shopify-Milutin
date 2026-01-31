@@ -1,0 +1,26 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "settings": {
+        "media_size": "large",
+        "enable_sticky_info": true,
+        "enable_zoom": true,
+        "show_vendor": false,
+        "show_sku": false
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "You may also like",
+        "products_to_show": 4,
+        "columns_desktop": 4
+      }
+    }
+  },
+  "order": [
+    "main",
+    "related-products"
+  ]
+}

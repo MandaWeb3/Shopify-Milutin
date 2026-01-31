@@ -35,6 +35,7 @@
     {{ 'section-search.css' | asset_url | stylesheet_tag }}
     {{ 'sections-homepage.css' | asset_url | stylesheet_tag }}
     {{ 'section-collection.css' | asset_url | stylesheet_tag }}
+    {{ 'section-product.css' | asset_url | stylesheet_tag }}
 
     {%- unless settings.type_body_font.system? -%}
       {{ settings.type_body_font | font_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: 'anonymous' }}
@@ -75,7 +76,13 @@
       };
       window.translations = {
         searchPlaceholder: {{ 'search.placeholder' | t | json }},
-        searchNoResults: {{ 'search.no_results_short' | t | json }}
+        searchNoResults: {{ 'search.no_results_short' | t | json }},
+        addToCart: {{ 'products.add_to_cart' | t | json }},
+        adding: {{ 'products.adding' | t | json }},
+        added: {{ 'products.added' | t | json }},
+        soldOut: {{ 'products.sold_out' | t | json }},
+        unavailable: {{ 'products.unavailable' | t | json }},
+        sale: {{ 'products.sale' | t | json }}
       };
     </script>
   </head>
@@ -99,6 +106,7 @@
     <script src="{{ 'section-search.js' | asset_url }}" defer></script>
     <script src="{{ 'sections-homepage.js' | asset_url }}" defer></script>
     <script src="{{ 'section-collection.js' | asset_url }}" defer></script>
+    <script src="{{ 'section-product.js' | asset_url }}" defer></script>
 
     {%- if settings.cart_type == 'drawer' -%}
       {% render 'cart-drawer' %}
