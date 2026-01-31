@@ -12,6 +12,7 @@
     "video-hero": {
       "type": "video-hero",
       "settings": {
+        "video": "shopify://files/videos/Whisk_qdzjzdo0azm4idmz0cn1ytytymz0qtljnmzk1so.mp4",
         "video_url": "",
         "image": "shopify://shop_images/Whisk_7e9a46676f693e68e1346015aa9f3d60dr.jpg",
         "image_mobile": "shopify://shop_images/Whisk_7e9a46676f693e68e1346015aa9f3d60dr.jpg",
