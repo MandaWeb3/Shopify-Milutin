@@ -1,26 +1,33 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "video-hero": {
       "type": "video-hero",
       "settings": {
+        "video_url": "",
+        "image": "shopify://shop_images/Whisk_7e9a46676f693e68e1346015aa9f3d60dr.jpg",
+        "image_mobile": "shopify://shop_images/Whisk_7e9a46676f693e68e1346015aa9f3d60dr.jpg",
         "heading": "NOVA KOLEKCIJA",
         "subheading": "Jesen / Zima 2024",
         "button_text": "POGLEDAJ",
         "button_link": "",
         "height": "full",
         "text_position": "bottom-center",
-        "text_color": "#FFFFFF",
+        "text_color": "#ffffff",
         "overlay_opacity": 20,
         "show_scroll_indicator": true
       }
     },
     "split-categories": {
       "type": "split-images",
-      "settings": {
-        "layout": "equal",
-        "gap": "small",
-        "height": "large"
-      },
       "blocks": {
         "women": {
           "type": "image",
@@ -28,7 +35,8 @@
             "subtitle": "Nova Kolekcija",
             "title": "ŽENE",
             "button_text": "POGLEDAJ",
-            "text_color": "#FFFFFF",
+            "link": "",
+            "text_color": "#ffffff",
             "overlay_opacity": 15
           }
         },
@@ -38,17 +46,27 @@
             "subtitle": "Nova Kolekcija",
             "title": "MUŠKARCI",
             "button_text": "POGLEDAJ",
-            "text_color": "#FFFFFF",
+            "link": "",
+            "text_color": "#ffffff",
             "overlay_opacity": 15
           }
         }
       },
-      "block_order": ["women", "men"]
+      "block_order": [
+        "women",
+        "men"
+      ],
+      "settings": {
+        "layout": "equal",
+        "gap": "small",
+        "height": "large"
+      }
     },
     "marquee-1": {
       "type": "marquee",
       "settings": {
         "text": "BESPLATNA DOSTAVA ZA PORUDŽBINE PREKO 5.000 RSD",
+        "link": "",
         "speed": "normal",
         "direction": "left",
         "color_scheme": "dark"
@@ -57,6 +75,7 @@
     "featured-products": {
       "type": "featured-products",
       "settings": {
+        "collection": "",
         "heading": "NOVO U PONUDI",
         "subheading": "Izabrani komadi",
         "products_count": 4,
@@ -70,75 +89,89 @@
         "subheading": "Ekskluzivno",
         "heading": "ZIMSKA KOLEKCIJA",
         "button_text": "OTKRIJTE",
+        "button_link": "",
         "height": "large",
         "text_position": "center",
-        "text_color": "#FFFFFF",
+        "text_color": "#ffffff",
         "overlay_opacity": 25,
         "parallax": true
       }
     },
     "collection-grid": {
       "type": "collection-list",
-      "settings": {
-        "layout": "masonry"
-      },
       "blocks": {
         "col-1": {
           "type": "collection",
           "settings": {
+            "collection": "",
             "title": "KAPUTI",
             "subtitle": "Zimska kolekcija",
             "button_text": "POGLEDAJ",
             "size": "large",
-            "text_color": "#FFFFFF",
+            "text_color": "#ffffff",
             "overlay_opacity": 20
           }
         },
         "col-2": {
           "type": "collection",
           "settings": {
+            "collection": "",
             "title": "HALJINE",
             "subtitle": "Nova sezona",
             "button_text": "POGLEDAJ",
             "size": "small",
-            "text_color": "#FFFFFF",
+            "text_color": "#ffffff",
             "overlay_opacity": 20
           }
         },
         "col-3": {
           "type": "collection",
           "settings": {
+            "collection": "",
             "title": "DŽEMPERI",
             "subtitle": "Topla ponuda",
             "button_text": "POGLEDAJ",
             "size": "small",
-            "text_color": "#FFFFFF",
+            "text_color": "#ffffff",
             "overlay_opacity": 20
           }
         },
         "col-4": {
           "type": "collection",
           "settings": {
+            "collection": "",
             "title": "PANTALONE",
+            "subtitle": "",
             "button_text": "POGLEDAJ",
             "size": "medium",
-            "text_color": "#FFFFFF",
+            "text_color": "#ffffff",
             "overlay_opacity": 20
           }
         },
         "col-5": {
           "type": "collection",
           "settings": {
+            "collection": "",
             "title": "TORBE",
             "subtitle": "Aksesori",
             "button_text": "POGLEDAJ",
             "size": "medium",
-            "text_color": "#FFFFFF",
+            "text_color": "#ffffff",
             "overlay_opacity": 20
           }
         }
       },
-      "block_order": ["col-1", "col-2", "col-3", "col-4", "col-5"]
+      "block_order": [
+        "col-1",
+        "col-2",
+        "col-3",
+        "col-4",
+        "col-5"
+      ],
+      "settings": {
+        "heading": "",
+        "layout": "masonry"
+      }
     },
     "image-with-text": {
       "type": "image-with-text",
@@ -146,6 +179,7 @@
         "heading": "DIZAJNIRANO ZA VAS",
         "text": "<p>Svaki komad u našoj kolekciji pažljivo je odabran da odražava moderan stil i bezvremensku eleganciju. Kvalitetni materijali i pažnja prema detaljima čine razliku.</p>",
         "button_text": "O NAMA",
+        "button_link": "",
         "layout": "image-left",
         "image_width": "half",
         "text_alignment": "left",
@@ -154,16 +188,11 @@
     },
     "featured-collections": {
       "type": "featured-collections",
-      "settings": {
-        "heading": "KOLEKCIJE",
-        "columns": "3",
-        "aspect_ratio": "portrait",
-        "text_alignment": "center"
-      },
       "blocks": {
         "fc-1": {
           "type": "collection",
           "settings": {
+            "collection": "",
             "title": "DECA",
             "subtitle": "2-14 godina"
           }
@@ -171,6 +200,7 @@
         "fc-2": {
           "type": "collection",
           "settings": {
+            "collection": "",
             "title": "BEAUTY",
             "subtitle": "Kozmetika"
           }
@@ -178,43 +208,59 @@
         "fc-3": {
           "type": "collection",
           "settings": {
+            "collection": "",
             "title": "HOME",
             "subtitle": "Dekoracija"
           }
         }
       },
-      "block_order": ["fc-1", "fc-2", "fc-3"]
+      "block_order": [
+        "fc-1",
+        "fc-2",
+        "fc-3"
+      ],
+      "settings": {
+        "heading": "KOLEKCIJE",
+        "columns": "3",
+        "aspect_ratio": "portrait",
+        "text_alignment": "center"
+      }
     },
     "split-editorial": {
       "type": "split-images",
-      "settings": {
-        "layout": "left-large",
-        "gap": "none",
-        "height": "medium"
-      },
       "blocks": {
         "editorial-1": {
           "type": "image",
           "settings": {
-            "title": "LIMITIRANA EDICIJA",
             "subtitle": "Specijalna ponuda",
+            "title": "LIMITIRANA EDICIJA",
             "button_text": "OTKRIJTE",
-            "text_color": "#FFFFFF",
+            "link": "",
+            "text_color": "#ffffff",
             "overlay_opacity": 20
           }
         },
         "editorial-2": {
           "type": "image",
           "settings": {
-            "title": "SNIŽENJE",
             "subtitle": "Do -50%",
+            "title": "SNIŽENJE",
             "button_text": "KUPUJTE SADA",
-            "text_color": "#FFFFFF",
+            "link": "",
+            "text_color": "#ffffff",
             "overlay_opacity": 20
           }
         }
       },
-      "block_order": ["editorial-1", "editorial-2"]
+      "block_order": [
+        "editorial-1",
+        "editorial-2"
+      ],
+      "settings": {
+        "layout": "left-large",
+        "gap": "none",
+        "height": "medium"
+      }
     }
   },
   "order": [
