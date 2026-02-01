@@ -1,0 +1,167 @@
+{%- comment -%}
+  Recently Viewed Products
+  Shows products the customer has recently viewed (stored in localStorage)
+{%- endcomment -%}
+
+<section class="recently-viewed" data-recently-viewed style="display: none;">
+  <div class="container">
+    <h2 class="recently-viewed__title">{{ section.settings.title | default: 'products.recently_viewed' | t }}</h2>
+    <div class="recently-viewed__grid" data-recently-viewed-grid></div>
+  </div>
+</section>
+
+<script>
+  (function() {
+    const storageKey = 'milutin_recently_viewed';
+    const maxItems = {{ section.settings.max_products | default: 8 }};
+    const section = document.querySelector('[data-recently-viewed]');
+    const grid = document.querySelector('[data-recently-viewed-grid]');
+
+    if (!section || !grid) return;
+
+    function getRecentlyViewed() {
+      try {
+        return JSON.parse(localStorage.getItem(storageKey)) || [];
+      } catch {
+        return [];
+      }
+    }
+
+    function render() {
+      const products = getRecentlyViewed();
+
+      // Don't show if empty or only current product
+      if (products.length < 2) {
+        section.style.display = 'none';
+        return;
+      }
+
+      // Filter out current product if on product page
+      const currentHandle = window.location.pathname.split('/products/')[1]?.split('?')[0];
+      const filtered = products.filter(p => p.handle !== currentHandle).slice(0, {{ section.settings.products_to_show | default: 4 }});
+
+      if (filtered.length === 0) {
+        section.style.display = 'none';
+        return;
+      }
+
+      grid.innerHTML = filtered.map(product => `
+        <div class="recently-viewed__item">
+          <a href="${product.url}" class="recently-viewed__link">
+            <div class="recently-viewed__image-wrapper">
+              <img src="${product.image}" alt="${product.title}" class="recently-viewed__image" loading="lazy">
+            </div>
+            <h3 class="recently-viewed__product-title">${product.title}</h3>
+            <p class="recently-viewed__price">${product.price}</p>
+          </a>
+        </div>
+      `).join('');
+
+      section.style.display = 'block';
+    }
+
+    render();
+  })();
+</script>
+
+<style>
+  .recently-viewed {
+    padding: var(--spacing-10) 0 var(--spacing-16);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .recently-viewed__title {
+    font-size: var(--font-size-lg);
+    font-weight: 300;
+    letter-spacing: var(--letter-spacing-wider);
+    text-transform: uppercase;
+    text-align: center;
+    margin: 0 0 var(--spacing-8);
+  }
+
+  .recently-viewed__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-4);
+  }
+
+  @media (min-width: 750px) {
+    .recently-viewed__grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--spacing-6);
+    }
+  }
+
+  .recently-viewed__link {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .recently-viewed__image-wrapper {
+    margin-bottom: var(--spacing-3);
+    overflow: hidden;
+  }
+
+  .recently-viewed__image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    transition: transform var(--transition-normal);
+  }
+
+  .recently-viewed__link:hover .recently-viewed__image {
+    transform: scale(1.03);
+  }
+
+  .recently-viewed__product-title {
+    font-size: var(--font-size-sm);
+    font-weight: 400;
+    margin: 0 0 var(--spacing-1);
+  }
+
+  .recently-viewed__price {
+    font-size: var(--font-size-sm);
+    color: var(--color-accent);
+    margin: 0;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Recently Viewed",
+  "tag": "section",
+  "class": "section-recently-viewed",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Recently Viewed"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "default": 4,
+      "label": "Products to show"
+    },
+    {
+      "type": "range",
+      "id": "max_products",
+      "min": 4,
+      "max": 20,
+      "step": 2,
+      "default": 8,
+      "label": "Max products to store"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Recently Viewed"
+    }
+  ]
+}
+{% endschema %}

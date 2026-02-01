@@ -80,6 +80,7 @@
     "sku": "Šifra",
     "media_thumbnail": "Učitaj sliku {{ position }} u prikaz galerije",
     "related_products": "Možda vam se svidi",
+    "recently_viewed": "Nedavno pregledano",
     "quick_view": "Brzi pregled",
     "add_to_wishlist": "Dodaj u listu želja",
     "remove_from_wishlist": "Ukloni iz liste želja",

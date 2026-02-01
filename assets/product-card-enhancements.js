@@ -456,12 +456,91 @@
   }
 
   /**
+   * Recently Viewed Products
+   * Tracks product views in localStorage
+   */
+  class RecentlyViewed {
+    constructor() {
+      this.storageKey = 'milutin_recently_viewed';
+      this.maxItems = 8;
+      this.trackCurrentProduct();
+    }
+
+    trackCurrentProduct() {
+      // Only track on product pages
+      const productData = document.querySelector('[data-product-json]');
+      if (!productData) return;
+
+      try {
+        const product = JSON.parse(productData.textContent);
+        this.addProduct({
+          id: product.id,
+          handle: product.handle,
+          title: product.title,
+          url: window.location.pathname,
+          image: product.featured_image,
+          price: this.formatMoney(product.price)
+        });
+      } catch (e) {
+        // Try alternative method using meta tags or URL
+        const url = window.location.pathname;
+        if (!url.includes('/products/')) return;
+
+        const handle = url.split('/products/')[1]?.split('?')[0];
+        const title = document.querySelector('h1')?.textContent?.trim();
+        const image = document.querySelector('.product-gallery__image img, [data-product-image]')?.src;
+        const price = document.querySelector('[data-product-price]')?.textContent?.trim();
+
+        if (handle && title) {
+          this.addProduct({ handle, title, url, image: image || '', price: price || '' });
+        }
+      }
+    }
+
+    addProduct(product) {
+      let products = this.getProducts();
+
+      // Remove if already exists
+      products = products.filter(p => p.handle !== product.handle);
+
+      // Add to beginning
+      products.unshift(product);
+
+      // Limit to max items
+      products = products.slice(0, this.maxItems);
+
+      this.saveProducts(products);
+    }
+
+    getProducts() {
+      try {
+        return JSON.parse(localStorage.getItem(this.storageKey)) || [];
+      } catch {
+        return [];
+      }
+    }
+
+    saveProducts(products) {
+      try {
+        localStorage.setItem(this.storageKey, JSON.stringify(products));
+      } catch (e) {
+        console.error('Failed to save recently viewed:', e);
+      }
+    }
+
+    formatMoney(cents) {
+      return (cents / 100).toFixed(2) + ' RSD';
+    }
+  }
+
+  /**
    * Initialize
    */
   function init() {
     window.wishlist = new WishlistManager();
     new QuickViewModal();
     new QuickAdd();
+    new RecentlyViewed();
   }
 
   if (document.readyState === 'loading') {

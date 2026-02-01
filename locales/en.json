@@ -80,6 +80,7 @@
     "sku": "SKU",
     "media_thumbnail": "Load image {{ position }} in gallery view",
     "related_products": "You may also like",
+    "recently_viewed": "Recently Viewed",
     "quick_view": "Quick view",
     "add_to_wishlist": "Add to wishlist",
     "remove_from_wishlist": "Remove from wishlist",
