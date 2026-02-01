@@ -4,7 +4,13 @@
   "sections": {
     "header": {
       "type": "header",
-      "settings": {}
+      "settings": {
+        "show_announcement": true,
+        "announcement_text": "Besplatna dostava za porudžbine preko 5.000 RSD",
+        "menu": "main-menu",
+        "sticky_header": true,
+        "transparent_header": false
+      }
     }
   },
   "order": [
