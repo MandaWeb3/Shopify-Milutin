@@ -1,6 +1,6 @@
 {%- comment -%}
   Size Guide Modal
-  Shows clothing size measurements
+  Shows women's clothing size measurements
 
   Usage: {% render 'size-guide-modal' %}
 {%- endcomment -%}
@@ -17,113 +17,59 @@
     </div>
 
     <div class="size-guide-modal__content">
-      <div class="size-guide-modal__tabs">
-        <button type="button" class="size-guide-modal__tab is-active" data-tab="women">{{ 'products.size_guide_women' | t }}</button>
-        <button type="button" class="size-guide-modal__tab" data-tab="men">{{ 'products.size_guide_men' | t }}</button>
-      </div>
-
-      <div class="size-guide-modal__panel is-active" data-panel="women">
-        <h3 class="size-guide-modal__subtitle">{{ 'products.size_guide_clothing' | t }}</h3>
-        <div class="size-guide-modal__table-wrapper">
-          <table class="size-guide-modal__table">
-            <thead>
-              <tr>
-                <th>{{ 'products.size_guide_size' | t }}</th>
-                <th>XS</th>
-                <th>S</th>
-                <th>M</th>
-                <th>L</th>
-                <th>XL</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>EU</td>
-                <td>32-34</td>
-                <td>36</td>
-                <td>38</td>
-                <td>40</td>
-                <td>42</td>
-              </tr>
-              <tr>
-                <td>{{ 'products.size_guide_bust' | t }} (cm)</td>
-                <td>78-82</td>
-                <td>82-86</td>
-                <td>86-90</td>
-                <td>90-94</td>
-                <td>94-98</td>
-              </tr>
-              <tr>
-                <td>{{ 'products.size_guide_waist' | t }} (cm)</td>
-                <td>58-62</td>
-                <td>62-66</td>
-                <td>66-70</td>
-                <td>70-74</td>
-                <td>74-78</td>
-              </tr>
-              <tr>
-                <td>{{ 'products.size_guide_hips' | t }} (cm)</td>
-                <td>84-88</td>
-                <td>88-92</td>
-                <td>92-96</td>
-                <td>96-100</td>
-                <td>100-104</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div class="size-guide-modal__panel" data-panel="men">
-        <h3 class="size-guide-modal__subtitle">{{ 'products.size_guide_clothing' | t }}</h3>
-        <div class="size-guide-modal__table-wrapper">
-          <table class="size-guide-modal__table">
-            <thead>
-              <tr>
-                <th>{{ 'products.size_guide_size' | t }}</th>
-                <th>S</th>
-                <th>M</th>
-                <th>L</th>
-                <th>XL</th>
-                <th>XXL</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>EU</td>
-                <td>44-46</td>
-                <td>48-50</td>
-                <td>52-54</td>
-                <td>56-58</td>
-                <td>60-62</td>
-              </tr>
-              <tr>
-                <td>{{ 'products.size_guide_chest' | t }} (cm)</td>
-                <td>88-92</td>
-                <td>96-100</td>
-                <td>104-108</td>
-                <td>112-116</td>
-                <td>120-124</td>
-              </tr>
-              <tr>
-                <td>{{ 'products.size_guide_waist' | t }} (cm)</td>
-                <td>76-80</td>
-                <td>84-88</td>
-                <td>92-96</td>
-                <td>100-104</td>
-                <td>108-112</td>
-              </tr>
-              <tr>
-                <td>{{ 'products.size_guide_hips' | t }} (cm)</td>
-                <td>90-94</td>
-                <td>98-102</td>
-                <td>106-110</td>
-                <td>114-118</td>
-                <td>122-126</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+      <h3 class="size-guide-modal__subtitle">{{ 'products.size_guide_clothing' | t }}</h3>
+      <div class="size-guide-modal__table-wrapper">
+        <table class="size-guide-modal__table">
+          <thead>
+            <tr>
+              <th>{{ 'products.size_guide_size' | t }}</th>
+              <th>XS</th>
+              <th>S</th>
+              <th>M</th>
+              <th>L</th>
+              <th>XL</th>
+              <th>XXL</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>EU</td>
+              <td>32-34</td>
+              <td>36</td>
+              <td>38</td>
+              <td>40</td>
+              <td>42</td>
+              <td>44</td>
+            </tr>
+            <tr>
+              <td>{{ 'products.size_guide_bust' | t }} (cm)</td>
+              <td>78-82</td>
+              <td>82-86</td>
+              <td>86-90</td>
+              <td>90-94</td>
+              <td>94-98</td>
+              <td>98-102</td>
+            </tr>
+            <tr>
+              <td>{{ 'products.size_guide_waist' | t }} (cm)</td>
+              <td>58-62</td>
+              <td>62-66</td>
+              <td>66-70</td>
+              <td>70-74</td>
+              <td>74-78</td>
+              <td>78-82</td>
+            </tr>
+            <tr>
+              <td>{{ 'products.size_guide_hips' | t }} (cm)</td>
+              <td>84-88</td>
+              <td>88-92</td>
+              <td>92-96</td>
+              <td>96-100</td>
+              <td>100-104</td>
+              <td>104-108</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
       <div class="size-guide-modal__tips">
@@ -212,42 +158,6 @@
     padding: var(--spacing-6);
   }
 
-  .size-guide-modal__tabs {
-    display: flex;
-    gap: var(--spacing-2);
-    margin-bottom: var(--spacing-6);
-  }
-
-  .size-guide-modal__tab {
-    padding: var(--spacing-2) var(--spacing-4);
-    font-size: var(--font-size-sm);
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: var(--letter-spacing-wide);
-    background: none;
-    border: 1px solid var(--color-border);
-    cursor: pointer;
-    transition: background-color 0.2s, border-color 0.2s;
-  }
-
-  .size-guide-modal__tab:hover {
-    border-color: var(--color-primary);
-  }
-
-  .size-guide-modal__tab.is-active {
-    background-color: var(--color-primary);
-    border-color: var(--color-primary);
-    color: var(--color-background);
-  }
-
-  .size-guide-modal__panel {
-    display: none;
-  }
-
-  .size-guide-modal__panel.is-active {
-    display: block;
-  }
-
   .size-guide-modal__subtitle {
     font-size: var(--font-size-base);
     font-weight: 500;
@@ -331,19 +241,6 @@
         modal.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
       }
-    });
-
-    // Tab switching
-    modal.querySelectorAll('[data-tab]').forEach(tab => {
-      tab.addEventListener('click', () => {
-        const tabName = tab.dataset.tab;
-
-        modal.querySelectorAll('[data-tab]').forEach(t => t.classList.remove('is-active'));
-        modal.querySelectorAll('[data-panel]').forEach(p => p.classList.remove('is-active'));
-
-        tab.classList.add('is-active');
-        modal.querySelector(`[data-panel="${tabName}"]`)?.classList.add('is-active');
-      });
     });
   })();
 </script>

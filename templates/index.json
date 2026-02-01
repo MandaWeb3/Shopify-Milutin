@@ -1,24 +1,15 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "video-hero": {
       "type": "video-hero",
       "settings": {
-        "video": "shopify://files/videos/Whisk_qdzjzdo0azm4idmz0cn1ytytymz0qtljnmzk1so.mp4",
+        "video": "",
         "video_url": "",
-        "image": "shopify://shop_images/Whisk_7e9a46676f693e68e1346015aa9f3d60dr.jpg",
-        "image_mobile": "shopify://shop_images/Whisk_7e9a46676f693e68e1346015aa9f3d60dr.jpg",
+        "image": "",
+        "image_mobile": "",
         "heading": "NOVA KOLEKCIJA",
-        "subheading": "Jesen / Zima 2024",
-        "button_text": "POGLEDAJ",
+        "subheading": "Proleće / Leto 2025",
+        "button_text": "OTKRIJTE",
         "button_link": "",
         "height": "full",
         "text_position": "bottom-center",
@@ -30,22 +21,22 @@
     "split-categories": {
       "type": "split-images",
       "blocks": {
-        "women": {
+        "new-arrivals": {
           "type": "image",
           "settings": {
-            "subtitle": "Nova Kolekcija",
-            "title": "ŽENE",
+            "subtitle": "Upravo stiglo",
+            "title": "NOVO",
             "button_text": "POGLEDAJ",
             "link": "",
             "text_color": "#ffffff",
             "overlay_opacity": 15
           }
         },
-        "men": {
+        "bestsellers": {
           "type": "image",
           "settings": {
-            "subtitle": "Nova Kolekcija",
-            "title": "MUŠKARCI",
+            "subtitle": "Vaši favoriti",
+            "title": "NAJPRODAVANIJE",
             "button_text": "POGLEDAJ",
             "link": "",
             "text_color": "#ffffff",
@@ -54,8 +45,8 @@
         }
       },
       "block_order": [
-        "women",
-        "men"
+        "new-arrivals",
+        "bestsellers"
       ],
       "settings": {
         "layout": "equal",
@@ -66,7 +57,7 @@
     "marquee-1": {
       "type": "marquee",
       "settings": {
-        "text": "BESPLATNA DOSTAVA ZA PORUDŽBINE PREKO 5.000 RSD",
+        "text": "BESPLATNA DOSTAVA ZA PORUDŽBINE PREKO 5.000 RSD  •  BESPLATNA ZAMENA  •  SIGURNA KUPOVINA",
         "link": "",
         "speed": "normal",
         "direction": "left",
@@ -78,24 +69,10 @@
       "settings": {
         "collection": "",
         "heading": "NOVO U PONUDI",
-        "subheading": "Izabrani komadi",
+        "subheading": "Najnoviji komadi iz naše kolekcije",
         "products_count": 4,
         "columns": "4",
         "show_view_all": true
-      }
-    },
-    "full-width-editorial": {
-      "type": "full-width-image",
-      "settings": {
-        "subheading": "Ekskluzivno",
-        "heading": "ZIMSKA KOLEKCIJA",
-        "button_text": "OTKRIJTE",
-        "button_link": "",
-        "height": "large",
-        "text_position": "center",
-        "text_color": "#ffffff",
-        "overlay_opacity": 25,
-        "parallax": true
       }
     },
     "collection-grid": {
@@ -105,8 +82,8 @@
           "type": "collection",
           "settings": {
             "collection": "",
-            "title": "KAPUTI",
-            "subtitle": "Zimska kolekcija",
+            "title": "HALJINE",
+            "subtitle": "Za svaku priliku",
             "button_text": "POGLEDAJ",
             "size": "large",
             "text_color": "#ffffff",
@@ -117,8 +94,8 @@
           "type": "collection",
           "settings": {
             "collection": "",
-            "title": "HALJINE",
-            "subtitle": "Nova sezona",
+            "title": "BLUZE",
+            "subtitle": "Elegancija",
             "button_text": "POGLEDAJ",
             "size": "small",
             "text_color": "#ffffff",
@@ -129,8 +106,8 @@
           "type": "collection",
           "settings": {
             "collection": "",
-            "title": "DŽEMPERI",
-            "subtitle": "Topla ponuda",
+            "title": "SUKNJE",
+            "subtitle": "Moderna klasika",
             "button_text": "POGLEDAJ",
             "size": "small",
             "text_color": "#ffffff",
@@ -142,7 +119,7 @@
           "settings": {
             "collection": "",
             "title": "PANTALONE",
-            "subtitle": "",
+            "subtitle": "Savršen kroj",
             "button_text": "POGLEDAJ",
             "size": "medium",
             "text_color": "#ffffff",
@@ -153,8 +130,8 @@
           "type": "collection",
           "settings": {
             "collection": "",
-            "title": "TORBE",
-            "subtitle": "Aksesori",
+            "title": "JAKNE",
+            "subtitle": "Za svaku sezonu",
             "button_text": "POGLEDAJ",
             "size": "medium",
             "text_color": "#ffffff",
@@ -170,15 +147,29 @@
         "col-5"
       ],
       "settings": {
-        "heading": "",
+        "heading": "KATEGORIJE",
         "layout": "masonry"
+      }
+    },
+    "full-width-editorial": {
+      "type": "full-width-image",
+      "settings": {
+        "subheading": "Ekskluzivno",
+        "heading": "KOLEKCIJA ELEGANCE",
+        "button_text": "OTKRIJTE",
+        "button_link": "",
+        "height": "large",
+        "text_position": "center",
+        "text_color": "#ffffff",
+        "overlay_opacity": 25,
+        "parallax": true
       }
     },
     "image-with-text": {
       "type": "image-with-text",
       "settings": {
-        "heading": "DIZAJNIRANO ZA VAS",
-        "text": "<p>Svaki komad u našoj kolekciji pažljivo je odabran da odražava moderan stil i bezvremensku eleganciju. Kvalitetni materijali i pažnja prema detaljima čine razliku.</p>",
+        "heading": "VAŠA PRIČA, VAŠ STIL",
+        "text": "<p>Verujemo da svaka žena zaslužuje da se oseća posebno. Naša kolekcija pažljivo je odabrana da odražava vašu jedinstvenu lepotu i stil. Od elegantnih haljina do svakodnevnih kombinacija - pronađite ono što vas čini srećnom.</p>",
         "button_text": "O NAMA",
         "button_link": "",
         "layout": "image-left",
@@ -194,24 +185,24 @@
           "type": "collection",
           "settings": {
             "collection": "",
-            "title": "DECA",
-            "subtitle": "2-14 godina"
+            "title": "AKSESORI",
+            "subtitle": "Torbe, nakit, šalovi"
           }
         },
         "fc-2": {
           "type": "collection",
           "settings": {
             "collection": "",
-            "title": "BEAUTY",
-            "subtitle": "Kozmetika"
+            "title": "OBUĆA",
+            "subtitle": "Cipele i čizme"
           }
         },
         "fc-3": {
           "type": "collection",
           "settings": {
             "collection": "",
-            "title": "HOME",
-            "subtitle": "Dekoracija"
+            "title": "SPECIAL",
+            "subtitle": "Za posebne prilike"
           }
         }
       },
@@ -221,7 +212,7 @@
         "fc-3"
       ],
       "settings": {
-        "heading": "KOLEKCIJE",
+        "heading": "DOPUNITE SVOJ STIL",
         "columns": "3",
         "aspect_ratio": "portrait",
         "text_alignment": "center"
@@ -233,7 +224,7 @@
         "editorial-1": {
           "type": "image",
           "settings": {
-            "subtitle": "Specijalna ponuda",
+            "subtitle": "Samo online",
             "title": "LIMITIRANA EDICIJA",
             "button_text": "OTKRIJTE",
             "link": "",
@@ -262,6 +253,48 @@
         "gap": "none",
         "height": "medium"
       }
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "blocks": {
+        "testimonial-1": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "text": "Oduševljena sam kvalitetom! Haljina izgleda još lepše uživo. Definitivno ću ponovo kupovati.",
+            "author": "Marija S.",
+            "location": "Beograd"
+          }
+        },
+        "testimonial-2": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "text": "Brza dostava i predivna pakovanja. Svaka kupovina je pravo zadovoljstvo.",
+            "author": "Ana M.",
+            "location": "Novi Sad"
+          }
+        },
+        "testimonial-3": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "text": "Konačno prodavnica sa stilom koji volim. Kvalitet iznad očekivanja!",
+            "author": "Jelena P.",
+            "location": "Niš"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial-1",
+        "testimonial-2",
+        "testimonial-3"
+      ],
+      "settings": {
+        "title": "ŠTA KAŽU NAŠE KUPKE",
+        "autoplay": true,
+        "autoplay_speed": 5
+      }
     }
   },
   "order": [
@@ -269,10 +302,11 @@
     "split-categories",
     "marquee-1",
     "featured-products",
-    "full-width-editorial",
     "collection-grid",
+    "full-width-editorial",
     "image-with-text",
     "featured-collections",
-    "split-editorial"
+    "split-editorial",
+    "testimonials"
   ]
 }
