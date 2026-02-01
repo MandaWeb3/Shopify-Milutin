@@ -305,6 +305,27 @@
     "view_product": "Pogledaj",
     "remove": "Ukloni"
   },
+  "contact": {
+    "name": "Ime",
+    "name_placeholder": "Vaše ime",
+    "email": "Email",
+    "email_placeholder": "vas@email.com",
+    "phone": "Telefon",
+    "phone_placeholder": "+381 XX XXX XXXX",
+    "subject": "Tema",
+    "subject_placeholder": "Izaberite temu",
+    "subject_order": "Pitanje o porudžbini",
+    "subject_product": "Pitanje o proizvodu",
+    "subject_shipping": "Dostava",
+    "subject_returns": "Povraćaj i refundacija",
+    "subject_other": "Ostalo",
+    "message": "Poruka",
+    "message_placeholder": "Kako vam možemo pomoći?",
+    "submit": "Pošalji poruku",
+    "success": "Hvala na poruci! Odgovorićemo vam uskoro.",
+    "address": "Adresa",
+    "hours": "Radno vreme"
+  },
   "accessibility": {
     "skip_to_content": "Preskoči na sadržaj",
     "close_menu": "Zatvori meni",

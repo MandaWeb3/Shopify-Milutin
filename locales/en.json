@@ -304,6 +304,27 @@
     "view_product": "View",
     "remove": "Remove"
   },
+  "contact": {
+    "name": "Name",
+    "name_placeholder": "Your name",
+    "email": "Email",
+    "email_placeholder": "your@email.com",
+    "phone": "Phone",
+    "phone_placeholder": "+381 XX XXX XXXX",
+    "subject": "Subject",
+    "subject_placeholder": "Select a topic",
+    "subject_order": "Order inquiry",
+    "subject_product": "Product question",
+    "subject_shipping": "Shipping",
+    "subject_returns": "Returns & refunds",
+    "subject_other": "Other",
+    "message": "Message",
+    "message_placeholder": "How can we help you?",
+    "submit": "Send message",
+    "success": "Thank you for your message! We'll get back to you soon.",
+    "address": "Address",
+    "hours": "Working hours"
+  },
   "accessibility": {
     "skip_to_content": "Skip to content",
     "close_menu": "Close menu",

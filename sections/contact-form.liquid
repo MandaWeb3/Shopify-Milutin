@@ -1,0 +1,547 @@
+{%- comment -%}
+  Contact Form Section
+  Minimal contact form with optional store information
+{%- endcomment -%}
+
+<section class="contact-section">
+  <div class="container">
+    <div class="contact-section__grid">
+      {%- if section.settings.show_info -%}
+        <div class="contact-section__info">
+          {%- if section.settings.info_title != blank -%}
+            <h2 class="contact-section__info-title">{{ section.settings.info_title }}</h2>
+          {%- endif -%}
+
+          {%- if section.settings.info_text != blank -%}
+            <div class="contact-section__info-text rte">
+              {{ section.settings.info_text }}
+            </div>
+          {%- endif -%}
+
+          <div class="contact-section__details">
+            {%- if section.settings.address != blank -%}
+              <div class="contact-section__detail">
+                <svg class="contact-section__icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M10 10.625C11.3807 10.625 12.5 9.50571 12.5 8.125C12.5 6.74429 11.3807 5.625 10 5.625C8.61929 5.625 7.5 6.74429 7.5 8.125C7.5 9.50571 8.61929 10.625 10 10.625Z" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M10 18.125C10 18.125 16.25 13.125 16.25 8.125C16.25 4.67322 13.4518 1.875 10 1.875C6.54822 1.875 3.75 4.67322 3.75 8.125C3.75 13.125 10 18.125 10 18.125Z" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <div>
+                  <p class="contact-section__detail-label">{{ 'contact.address' | t }}</p>
+                  <p class="contact-section__detail-value">{{ section.settings.address }}</p>
+                </div>
+              </div>
+            {%- endif -%}
+
+            {%- if section.settings.phone != blank -%}
+              <div class="contact-section__detail">
+                <svg class="contact-section__icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M18.125 14.1917V16.6917C18.1261 16.9213 18.0795 17.1487 17.9882 17.3595C17.897 17.5703 17.7631 17.7601 17.5949 17.917C17.4267 18.0739 17.2278 18.1946 17.0109 18.2713C16.794 18.348 16.5636 18.3792 16.3342 18.3634C13.7819 18.0882 11.3304 17.2331 9.16251 15.8642C7.14926 14.6233 5.43922 12.9132 4.19835 10.9C2.82419 8.72209 1.96876 6.25843 1.69918 3.69503C1.68343 3.46634 1.71434 3.23667 1.79051 3.02034C1.86668 2.80401 1.98649 2.60554 2.14241 2.43746C2.29833 2.26937 2.48695 2.1353 2.69668 2.04352C2.90641 1.95175 3.13279 1.90424 3.36168 1.90419H5.86168C6.26217 1.90013 6.65036 2.04033 6.95544 2.29865C7.26052 2.55698 7.46189 2.91641 7.52251 3.31253C7.63507 4.10413 7.83492 4.88047 8.11835 5.62753C8.2292 5.91098 8.25554 6.21962 8.19417 6.51729C8.1328 6.81495 7.98631 7.08905 7.77168 7.30669L6.71001 8.36836C7.86244 10.3925 9.53256 12.0626 11.5567 13.215L12.6183 12.1534C12.836 11.9387 13.1101 11.7922 13.4077 11.7309C13.7054 11.6695 14.014 11.6958 14.2975 11.8067C15.0446 12.0901 15.8209 12.29 16.6125 12.4025C17.0128 12.4637 17.3758 12.6686 17.6352 12.9791C17.8947 13.2896 18.0332 13.6839 18.025 14.0884L18.125 14.1917Z" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <div>
+                  <p class="contact-section__detail-label">{{ 'contact.phone' | t }}</p>
+                  <a href="tel:{{ section.settings.phone | remove: ' ' }}" class="contact-section__detail-value contact-section__link">
+                    {{ section.settings.phone }}
+                  </a>
+                </div>
+              </div>
+            {%- endif -%}
+
+            {%- if section.settings.email != blank -%}
+              <div class="contact-section__detail">
+                <svg class="contact-section__icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M2.5 5.83337L9.0755 10.5962C9.63533 10.9819 10.3647 10.9819 10.9245 10.5962L17.5 5.83337" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M3.33333 4.16663H16.6667C17.5871 4.16663 18.3333 4.91282 18.3333 5.83329V14.1666C18.3333 15.0871 17.5871 15.8333 16.6667 15.8333H3.33333C2.41286 15.8333 1.66667 15.0871 1.66667 14.1666V5.83329C1.66667 4.91282 2.41286 4.16663 3.33333 4.16663Z" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/>
+                </svg>
+                <div>
+                  <p class="contact-section__detail-label">{{ 'contact.email' | t }}</p>
+                  <a href="mailto:{{ section.settings.email }}" class="contact-section__detail-value contact-section__link">
+                    {{ section.settings.email }}
+                  </a>
+                </div>
+              </div>
+            {%- endif -%}
+
+            {%- if section.settings.hours != blank -%}
+              <div class="contact-section__detail">
+                <svg class="contact-section__icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <circle cx="10" cy="10" r="8.125" stroke="currentColor" stroke-width="1.25"/>
+                  <path d="M10 5V10L13.125 12.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <div>
+                  <p class="contact-section__detail-label">{{ 'contact.hours' | t }}</p>
+                  <p class="contact-section__detail-value">{{ section.settings.hours }}</p>
+                </div>
+              </div>
+            {%- endif -%}
+          </div>
+
+          {%- if section.settings.show_social -%}
+            <div class="contact-section__social">
+              <p class="contact-section__social-label">{{ 'footer.social.follow_us' | t }}</p>
+              <div class="contact-section__social-links">
+                {%- if settings.social_instagram_link != blank -%}
+                  <a href="{{ settings.social_instagram_link }}" class="contact-section__social-link" target="_blank" rel="noopener" aria-label="Instagram">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <rect x="2.5" y="2.5" width="15" height="15" rx="4" stroke="currentColor" stroke-width="1.25"/>
+                      <circle cx="10" cy="10" r="3.125" stroke="currentColor" stroke-width="1.25"/>
+                      <circle cx="14.375" cy="5.625" r="0.9375" fill="currentColor"/>
+                    </svg>
+                  </a>
+                {%- endif -%}
+                {%- if settings.social_facebook_link != blank -%}
+                  <a href="{{ settings.social_facebook_link }}" class="contact-section__social-link" target="_blank" rel="noopener" aria-label="Facebook">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <path d="M15 1.875H12.5C11.1739 1.875 9.90215 2.40178 8.96447 3.33947C8.02678 4.27715 7.5 5.54892 7.5 6.875V9.375H5V12.5H7.5V18.125H10.625V12.5H13.125L14.375 9.375H10.625V6.875C10.625 6.54348 10.7567 6.22554 10.9911 5.99112C11.2255 5.7567 11.5435 5.625 11.875 5.625H15V1.875Z" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </a>
+                {%- endif -%}
+                {%- if settings.social_tiktok_link != blank -%}
+                  <a href="{{ settings.social_tiktok_link }}" class="contact-section__social-link" target="_blank" rel="noopener" aria-label="TikTok">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <path d="M14.375 7.5V12.5C14.375 14.9162 12.4162 16.875 10 16.875C7.58375 16.875 5.625 14.9162 5.625 12.5C5.625 10.0838 7.58375 8.125 10 8.125V11.25" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M14.375 3.125V7.5C15.7557 7.5 16.875 6.38071 16.875 5C16.875 3.61929 15.7557 3.125 14.375 3.125Z" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </a>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      <div class="contact-section__form-wrapper">
+        {%- if section.settings.form_title != blank -%}
+          <h2 class="contact-section__form-title">{{ section.settings.form_title }}</h2>
+        {%- endif -%}
+
+        {%- if section.settings.form_text != blank -%}
+          <p class="contact-section__form-text">{{ section.settings.form_text }}</p>
+        {%- endif -%}
+
+        {%- form 'contact', class: 'contact-form' -%}
+          {%- if form.posted_successfully? -%}
+            <div class="contact-form__success" role="status">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M16.6667 5L7.50001 14.1667L3.33334 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <p>{{ 'contact.success' | t }}</p>
+            </div>
+          {%- endif -%}
+
+          {%- if form.errors -%}
+            <div class="contact-form__errors" role="alert">
+              <p>{{ form.errors | default_errors }}</p>
+            </div>
+          {%- endif -%}
+
+          <div class="contact-form__row contact-form__row--half">
+            <div class="contact-form__field">
+              <label for="ContactForm-name" class="contact-form__label">{{ 'contact.name' | t }} <span aria-hidden="true">*</span></label>
+              <input
+                type="text"
+                id="ContactForm-name"
+                name="contact[{{ 'contact.name' | t }}]"
+                class="contact-form__input"
+                required
+                autocomplete="name"
+                placeholder="{{ 'contact.name_placeholder' | t }}"
+              >
+            </div>
+
+            <div class="contact-form__field">
+              <label for="ContactForm-email" class="contact-form__label">{{ 'contact.email' | t }} <span aria-hidden="true">*</span></label>
+              <input
+                type="email"
+                id="ContactForm-email"
+                name="contact[email]"
+                class="contact-form__input"
+                required
+                autocomplete="email"
+                spellcheck="false"
+                autocapitalize="off"
+                placeholder="{{ 'contact.email_placeholder' | t }}"
+                {% if form.email %}value="{{ form.email }}"{% endif %}
+              >
+            </div>
+          </div>
+
+          <div class="contact-form__row contact-form__row--half">
+            <div class="contact-form__field">
+              <label for="ContactForm-phone" class="contact-form__label">{{ 'contact.phone' | t }}</label>
+              <input
+                type="tel"
+                id="ContactForm-phone"
+                name="contact[{{ 'contact.phone' | t }}]"
+                class="contact-form__input"
+                autocomplete="tel"
+                placeholder="{{ 'contact.phone_placeholder' | t }}"
+              >
+            </div>
+
+            <div class="contact-form__field">
+              <label for="ContactForm-subject" class="contact-form__label">{{ 'contact.subject' | t }}</label>
+              <select id="ContactForm-subject" name="contact[{{ 'contact.subject' | t }}]" class="contact-form__input contact-form__select">
+                <option value="">{{ 'contact.subject_placeholder' | t }}</option>
+                <option value="{{ 'contact.subject_order' | t }}">{{ 'contact.subject_order' | t }}</option>
+                <option value="{{ 'contact.subject_product' | t }}">{{ 'contact.subject_product' | t }}</option>
+                <option value="{{ 'contact.subject_shipping' | t }}">{{ 'contact.subject_shipping' | t }}</option>
+                <option value="{{ 'contact.subject_returns' | t }}">{{ 'contact.subject_returns' | t }}</option>
+                <option value="{{ 'contact.subject_other' | t }}">{{ 'contact.subject_other' | t }}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="contact-form__field">
+            <label for="ContactForm-message" class="contact-form__label">{{ 'contact.message' | t }} <span aria-hidden="true">*</span></label>
+            <textarea
+              id="ContactForm-message"
+              name="contact[{{ 'contact.message' | t }}]"
+              class="contact-form__input contact-form__textarea"
+              required
+              rows="5"
+              placeholder="{{ 'contact.message_placeholder' | t }}"
+            ></textarea>
+          </div>
+
+          <button type="submit" class="contact-form__submit btn btn--primary">
+            {{ 'contact.submit' | t }}
+          </button>
+        {%- endform -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-section {
+    padding: var(--spacing-10) 0 var(--spacing-16);
+  }
+
+  .contact-section__grid {
+    display: grid;
+    gap: var(--spacing-10);
+  }
+
+  @media (min-width: 990px) {
+    .contact-section__grid {
+      grid-template-columns: 1fr 1.2fr;
+      gap: var(--spacing-16);
+    }
+  }
+
+  /* Info Column */
+  .contact-section__info {
+    order: 2;
+  }
+
+  @media (min-width: 990px) {
+    .contact-section__info {
+      order: 1;
+    }
+  }
+
+  .contact-section__info-title {
+    font-size: var(--font-size-xl);
+    font-weight: 300;
+    letter-spacing: var(--letter-spacing-wider);
+    text-transform: uppercase;
+    margin: 0 0 var(--spacing-4);
+  }
+
+  .contact-section__info-text {
+    font-size: var(--font-size-sm);
+    color: var(--color-accent);
+    line-height: 1.7;
+    margin-bottom: var(--spacing-8);
+  }
+
+  .contact-section__details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-5);
+    margin-bottom: var(--spacing-8);
+  }
+
+  .contact-section__detail {
+    display: flex;
+    gap: var(--spacing-3);
+  }
+
+  .contact-section__icon {
+    flex-shrink: 0;
+    color: var(--color-primary);
+    margin-top: 2px;
+  }
+
+  .contact-section__detail-label {
+    font-size: var(--font-size-xs);
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+    margin: 0 0 var(--spacing-1);
+  }
+
+  .contact-section__detail-value {
+    font-size: var(--font-size-sm);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .contact-section__link {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .contact-section__link:hover {
+    color: var(--color-accent);
+  }
+
+  .contact-section__social {
+    padding-top: var(--spacing-6);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .contact-section__social-label {
+    font-size: var(--font-size-xs);
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+    margin: 0 0 var(--spacing-3);
+  }
+
+  .contact-section__social-links {
+    display: flex;
+    gap: var(--spacing-3);
+  }
+
+  .contact-section__social-link {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--color-border);
+    color: var(--color-primary);
+    transition: background-color 0.2s, border-color 0.2s;
+  }
+
+  .contact-section__social-link:hover {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-background);
+  }
+
+  /* Form Column */
+  .contact-section__form-wrapper {
+    order: 1;
+  }
+
+  @media (min-width: 990px) {
+    .contact-section__form-wrapper {
+      order: 2;
+    }
+  }
+
+  .contact-section__form-title {
+    font-size: var(--font-size-xl);
+    font-weight: 300;
+    letter-spacing: var(--letter-spacing-wider);
+    text-transform: uppercase;
+    margin: 0 0 var(--spacing-3);
+  }
+
+  .contact-section__form-text {
+    font-size: var(--font-size-sm);
+    color: var(--color-accent);
+    margin: 0 0 var(--spacing-6);
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-4);
+  }
+
+  .contact-form__row--half {
+    display: grid;
+    gap: var(--spacing-4);
+  }
+
+  @media (min-width: 750px) {
+    .contact-form__row--half {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .contact-form__field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+  }
+
+  .contact-form__label {
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+  }
+
+  .contact-form__label span {
+    color: var(--color-error);
+  }
+
+  .contact-form__input {
+    width: 100%;
+    padding: var(--spacing-3) var(--spacing-4);
+    font-size: var(--font-size-sm);
+    font-family: inherit;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-background);
+    transition: border-color 0.2s;
+  }
+
+  .contact-form__input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+  }
+
+  .contact-form__input::placeholder {
+    color: var(--color-accent);
+    opacity: 0.6;
+  }
+
+  .contact-form__select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23666' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right var(--spacing-4) center;
+    padding-right: var(--spacing-10);
+    cursor: pointer;
+  }
+
+  .contact-form__textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .contact-form__submit {
+    align-self: flex-start;
+    min-width: 200px;
+    margin-top: var(--spacing-2);
+  }
+
+  .contact-form__success {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    padding: var(--spacing-4);
+    background-color: rgba(16, 185, 129, 0.1);
+    border: 1px solid var(--color-success);
+    color: var(--color-success);
+    margin-bottom: var(--spacing-4);
+  }
+
+  .contact-form__success p {
+    margin: 0;
+    font-size: var(--font-size-sm);
+  }
+
+  .contact-form__errors {
+    padding: var(--spacing-4);
+    background-color: rgba(239, 68, 68, 0.1);
+    border: 1px solid var(--color-error);
+    color: var(--color-error);
+    margin-bottom: var(--spacing-4);
+  }
+
+  .contact-form__errors p {
+    margin: 0;
+    font-size: var(--font-size-sm);
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Contact Form",
+  "tag": "section",
+  "class": "section-contact",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Form"
+    },
+    {
+      "type": "text",
+      "id": "form_title",
+      "label": "Form title",
+      "default": "Send us a message"
+    },
+    {
+      "type": "textarea",
+      "id": "form_text",
+      "label": "Form description"
+    },
+    {
+      "type": "header",
+      "content": "Contact Information"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_info",
+      "label": "Show contact information",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "info_title",
+      "label": "Info title",
+      "default": "Get in touch"
+    },
+    {
+      "type": "richtext",
+      "id": "info_text",
+      "label": "Info text",
+      "default": "<p>We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>"
+    },
+    {
+      "type": "textarea",
+      "id": "address",
+      "label": "Address"
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Phone number"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Email address"
+    },
+    {
+      "type": "text",
+      "id": "hours",
+      "label": "Working hours"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social",
+      "label": "Show social links",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact Form",
+      "settings": {
+        "form_title": "Send us a message",
+        "info_title": "Get in touch",
+        "info_text": "<p>We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>",
+        "show_info": true,
+        "show_social": true
+      }
+    }
+  ]
+}
+{% endschema %}
