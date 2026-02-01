@@ -10,7 +10,7 @@
         "heading": "NOVA KOLEKCIJA",
         "subheading": "Proleće / Leto 2025",
         "button_text": "OTKRIJTE",
-        "button_link": "",
+        "button_link": "/collections/novo",
         "height": "full",
         "text_position": "bottom-center",
         "text_color": "#ffffff",
@@ -27,7 +27,7 @@
             "subtitle": "Upravo stiglo",
             "title": "NOVO",
             "button_text": "POGLEDAJ",
-            "link": "",
+            "link": "/collections/novo",
             "text_color": "#ffffff",
             "overlay_opacity": 15
           }
@@ -38,7 +38,7 @@
             "subtitle": "Vaši favoriti",
             "title": "NAJPRODAVANIJE",
             "button_text": "POGLEDAJ",
-            "link": "",
+            "link": "/collections/frontpage",
             "text_color": "#ffffff",
             "overlay_opacity": 15
           }
@@ -67,7 +67,7 @@
     "featured-products": {
       "type": "featured-products",
       "settings": {
-        "collection": "",
+        "collection": "novo",
         "heading": "NOVO U PONUDI",
         "subheading": "Najnoviji komadi iz naše kolekcije",
         "products_count": 4,
@@ -81,7 +81,7 @@
         "col-1": {
           "type": "collection",
           "settings": {
-            "collection": "",
+            "collection": "haljine",
             "title": "HALJINE",
             "subtitle": "Za svaku priliku",
             "button_text": "POGLEDAJ",
@@ -93,8 +93,8 @@
         "col-2": {
           "type": "collection",
           "settings": {
-            "collection": "",
-            "title": "BLUZE",
+            "collection": "kosulje",
+            "title": "KOŠULJE",
             "subtitle": "Elegancija",
             "button_text": "POGLEDAJ",
             "size": "small",
@@ -105,7 +105,7 @@
         "col-3": {
           "type": "collection",
           "settings": {
-            "collection": "",
+            "collection": "suknje",
             "title": "SUKNJE",
             "subtitle": "Moderna klasika",
             "button_text": "POGLEDAJ",
@@ -117,7 +117,7 @@
         "col-4": {
           "type": "collection",
           "settings": {
-            "collection": "",
+            "collection": "pantalone",
             "title": "PANTALONE",
             "subtitle": "Savršen kroj",
             "button_text": "POGLEDAJ",
@@ -129,8 +129,8 @@
         "col-5": {
           "type": "collection",
           "settings": {
-            "collection": "",
-            "title": "JAKNE",
+            "collection": "kaputi",
+            "title": "KAPUTI",
             "subtitle": "Za svaku sezonu",
             "button_text": "POGLEDAJ",
             "size": "medium",
@@ -157,7 +157,7 @@
         "subheading": "Ekskluzivno",
         "heading": "KOLEKCIJA ELEGANCE",
         "button_text": "OTKRIJTE",
-        "button_link": "",
+        "button_link": "/collections/haljine",
         "height": "large",
         "text_position": "center",
         "text_color": "#ffffff",
@@ -184,7 +184,7 @@
         "fc-1": {
           "type": "collection",
           "settings": {
-            "collection": "",
+            "collection": "aksesoari",
             "title": "AKSESORI",
             "subtitle": "Torbe, nakit, šalovi"
           }
@@ -192,17 +192,17 @@
         "fc-2": {
           "type": "collection",
           "settings": {
-            "collection": "",
-            "title": "OBUĆA",
-            "subtitle": "Cipele i čizme"
+            "collection": "dzemperi",
+            "title": "DŽEMPERI",
+            "subtitle": "Za hladne dane"
           }
         },
         "fc-3": {
           "type": "collection",
           "settings": {
-            "collection": "",
-            "title": "SPECIAL",
-            "subtitle": "Za posebne prilike"
+            "collection": "sakoi",
+            "title": "SAKOI",
+            "subtitle": "Poslovni stil"
           }
         }
       },
@@ -227,7 +227,7 @@
             "subtitle": "Samo online",
             "title": "LIMITIRANA EDICIJA",
             "button_text": "OTKRIJTE",
-            "link": "",
+            "link": "/collections/novo",
             "text_color": "#ffffff",
             "overlay_opacity": 20
           }
@@ -238,7 +238,7 @@
             "subtitle": "Do -50%",
             "title": "SNIŽENJE",
             "button_text": "KUPUJTE SADA",
-            "link": "",
+            "link": "/collections/all",
             "text_color": "#ffffff",
             "overlay_opacity": 20
           }
