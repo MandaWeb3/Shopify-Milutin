@@ -7,6 +7,30 @@
   margin-top: auto;
 }
 
+/* Footer Logo
+   ========================================================================== */
+.footer__logo {
+  padding: var(--spacing-10) 0;
+  text-align: center;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.footer__logo-link {
+  display: inline-block;
+}
+
+.footer__logo-image {
+  max-width: 150px;
+  height: auto;
+}
+
+.footer__logo-text {
+  font-size: var(--font-size-2xl);
+  font-weight: 300;
+  letter-spacing: var(--letter-spacing-wider);
+  text-transform: uppercase;
+}
+
 /* Newsletter Section
    ========================================================================== */
 .footer__newsletter {
