@@ -143,51 +143,45 @@
 
     async refresh() {
       try {
-        const response = await fetch('/?section_id=cart-drawer-content');
+        // Fetch the cart drawer section
+        const response = await fetch('/?section_id=cart-drawer');
         const html = await response.text();
 
-        // Parse and update content
+        // Parse the response
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
 
-        // For now, just refresh the whole page section or fetch cart data
-        const cartResponse = await fetch('/cart.js');
-        const cart = await cartResponse.json();
+        // Get the new drawer content
+        const newDrawer = doc.querySelector('[data-cart-drawer]');
+        if (newDrawer && this.drawer) {
+          // Replace drawer panel content
+          const newPanel = newDrawer.querySelector('.cart-drawer__panel');
+          const currentPanel = this.drawer.querySelector('.cart-drawer__panel');
+          if (newPanel && currentPanel) {
+            currentPanel.innerHTML = newPanel.innerHTML;
+          }
 
-        this.updateDrawerContent(cart);
+          // Re-bind close button
+          this.closeBtn = this.drawer.querySelector('[data-cart-drawer-close]');
+          this.closeBtn?.addEventListener('click', () => this.close());
+        }
+
+        // Update header cart count
+        this.updateHeaderCount();
       } catch (error) {
         console.error('Error refreshing cart:', error);
       }
     }
 
-    updateDrawerContent(cart) {
-      // Update count
-      const countEl = this.drawer.querySelector('[data-cart-count-drawer]');
-      if (countEl) {
-        countEl.textContent = `(${cart.item_count})`;
-      }
-
-      // Update subtotal
-      const subtotalEl = this.drawer.querySelector('[data-cart-drawer-subtotal]');
-      if (subtotalEl) {
-        subtotalEl.textContent = this.formatMoney(cart.total_price);
-      }
-
-      // If cart is empty, refresh page to show empty state
-      if (cart.item_count === 0) {
-        location.reload();
-      }
-    }
-
     updateHeaderCount() {
-      document.querySelectorAll('[data-cart-count]').forEach((el) => {
-        fetch('/cart.js')
-          .then(response => response.json())
-          .then(cart => {
+      fetch('/cart.js')
+        .then(response => response.json())
+        .then(cart => {
+          document.querySelectorAll('[data-cart-count]').forEach((el) => {
             el.textContent = cart.item_count;
             el.hidden = cart.item_count === 0;
           });
-      });
+        });
     }
 
     formatMoney(cents) {

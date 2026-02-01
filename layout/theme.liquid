@@ -119,7 +119,7 @@
     {% render 'size-guide-modal' %}
 
     {%- if settings.cart_type == 'drawer' -%}
-      {% render 'cart-drawer' %}
+      {% section 'cart-drawer' %}
     {%- endif -%}
 
     {% render 'newsletter-popup' %}
