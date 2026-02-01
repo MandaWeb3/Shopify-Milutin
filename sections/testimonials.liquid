@@ -1,0 +1,365 @@
+{%- comment -%}
+  Testimonials Section
+  Customer reviews/testimonials slider
+{%- endcomment -%}
+
+<section class="testimonials-section">
+  <div class="container">
+    {%- if section.settings.title != blank -%}
+      <h2 class="testimonials-section__title">{{ section.settings.title }}</h2>
+    {%- endif -%}
+
+    <div class="testimonials-slider" data-testimonials-slider>
+      <div class="testimonials-slider__track" data-testimonials-track>
+        {%- for block in section.blocks -%}
+          <div class="testimonial-card" {{ block.shopify_attributes }}>
+            <div class="testimonial-card__stars">
+              {%- for i in (1..5) -%}
+                <svg class="testimonial-card__star {% if i <= block.settings.rating %}testimonial-card__star--filled{% endif %}" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M8 1L10.163 5.279L15 6.056L11.5 9.421L12.326 14.2L8 11.979L3.674 14.2L4.5 9.421L1 6.056L5.837 5.279L8 1Z" stroke="currentColor" stroke-width="1" fill="{% if i <= block.settings.rating %}currentColor{% else %}none{% endif %}"/>
+                </svg>
+              {%- endfor -%}
+            </div>
+
+            <blockquote class="testimonial-card__quote">
+              {{ block.settings.quote }}
+            </blockquote>
+
+            <div class="testimonial-card__author">
+              {%- if block.settings.author_image != blank -%}
+                <div class="testimonial-card__avatar">
+                  {{ block.settings.author_image | image_url: width: 80 | image_tag: loading: 'lazy' }}
+                </div>
+              {%- endif -%}
+              <div class="testimonial-card__author-info">
+                <p class="testimonial-card__name">{{ block.settings.author_name }}</p>
+                {%- if block.settings.author_title != blank -%}
+                  <p class="testimonial-card__author-title">{{ block.settings.author_title }}</p>
+                {%- endif -%}
+              </div>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+
+      {%- if section.blocks.size > 1 -%}
+        <div class="testimonials-slider__nav">
+          <button type="button" class="testimonials-slider__btn testimonials-slider__btn--prev" data-testimonials-prev aria-label="Previous">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="testimonials-slider__dots" data-testimonials-dots>
+            {%- for block in section.blocks -%}
+              <button type="button" class="testimonials-slider__dot {% if forloop.first %}is-active{% endif %}" data-testimonials-dot="{{ forloop.index0 }}" aria-label="Go to testimonial {{ forloop.index }}"></button>
+            {%- endfor -%}
+          </div>
+          <button type="button" class="testimonials-slider__btn testimonials-slider__btn--next" data-testimonials-next aria-label="Next">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials-section {
+    padding: var(--spacing-10) 0 var(--spacing-16);
+    background-color: #f9f9f9;
+  }
+
+  .testimonials-section__title {
+    font-size: var(--font-size-xl);
+    font-weight: 300;
+    letter-spacing: var(--letter-spacing-wider);
+    text-transform: uppercase;
+    text-align: center;
+    margin: 0 0 var(--spacing-10);
+  }
+
+  .testimonials-slider {
+    max-width: 900px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+
+  .testimonials-slider__track {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+
+  .testimonial-card {
+    flex: 0 0 100%;
+    padding: 0 var(--spacing-4);
+    text-align: center;
+  }
+
+  @media (min-width: 750px) {
+    .testimonial-card {
+      padding: 0 var(--spacing-10);
+    }
+  }
+
+  .testimonial-card__stars {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-1);
+    margin-bottom: var(--spacing-4);
+    color: #fbbf24;
+  }
+
+  .testimonial-card__star--filled {
+    color: #fbbf24;
+  }
+
+  .testimonial-card__quote {
+    font-size: var(--font-size-lg);
+    font-style: italic;
+    line-height: 1.7;
+    color: var(--color-primary);
+    margin: 0 0 var(--spacing-6);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (min-width: 750px) {
+    .testimonial-card__quote {
+      font-size: var(--font-size-xl);
+    }
+  }
+
+  .testimonial-card__author {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-3);
+  }
+
+  .testimonial-card__avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  .testimonial-card__avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .testimonial-card__author-info {
+    text-align: left;
+  }
+
+  .testimonial-card__name {
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    margin: 0;
+  }
+
+  .testimonial-card__author-title {
+    font-size: var(--font-size-xs);
+    color: var(--color-accent);
+    margin: 0;
+  }
+
+  .testimonials-slider__nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-4);
+    margin-top: var(--spacing-8);
+  }
+
+  .testimonials-slider__btn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+  }
+
+  .testimonials-slider__btn:hover {
+    border-color: var(--color-primary);
+  }
+
+  .testimonials-slider__dots {
+    display: flex;
+    gap: var(--spacing-2);
+  }
+
+  .testimonials-slider__dot {
+    width: 10px;
+    height: 10px;
+    padding: 0;
+    background-color: var(--color-border);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+
+  .testimonials-slider__dot:hover,
+  .testimonials-slider__dot.is-active {
+    background-color: var(--color-primary);
+  }
+</style>
+
+<script>
+  (function() {
+    const slider = document.querySelector('[data-testimonials-slider]');
+    if (!slider) return;
+
+    const track = slider.querySelector('[data-testimonials-track]');
+    const dots = slider.querySelectorAll('[data-testimonials-dot]');
+    const prevBtn = slider.querySelector('[data-testimonials-prev]');
+    const nextBtn = slider.querySelector('[data-testimonials-next]');
+    const totalSlides = dots.length;
+    let currentIndex = 0;
+
+    function goToSlide(index) {
+      if (index < 0) index = totalSlides - 1;
+      if (index >= totalSlides) index = 0;
+      currentIndex = index;
+
+      track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('is-active', i === currentIndex);
+      });
+    }
+
+    prevBtn?.addEventListener('click', () => goToSlide(currentIndex - 1));
+    nextBtn?.addEventListener('click', () => goToSlide(currentIndex + 1));
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        goToSlide(parseInt(dot.dataset.testimonialsDot));
+      });
+    });
+
+    // Auto-play
+    {% if section.settings.autoplay %}
+    let autoplayInterval = setInterval(() => goToSlide(currentIndex + 1), {{ section.settings.autoplay_speed | default: 5000 }});
+
+    slider.addEventListener('mouseenter', () => clearInterval(autoplayInterval));
+    slider.addEventListener('mouseleave', () => {
+      autoplayInterval = setInterval(() => goToSlide(currentIndex + 1), {{ section.settings.autoplay_speed | default: 5000 }});
+    });
+    {% endif %}
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "tag": "section",
+  "class": "section-testimonials",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "What Our Customers Say"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "min": 3000,
+      "max": 10000,
+      "step": 1000,
+      "default": 5000,
+      "label": "Autoplay speed (ms)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "range",
+          "id": "rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5,
+          "label": "Rating"
+        },
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote",
+          "default": "Amazing quality and fast delivery. I'm extremely happy with my purchase!"
+        },
+        {
+          "type": "text",
+          "id": "author_name",
+          "label": "Author name",
+          "default": "Ana M."
+        },
+        {
+          "type": "text",
+          "id": "author_title",
+          "label": "Author title",
+          "default": "Verified Buyer"
+        },
+        {
+          "type": "image_picker",
+          "id": "author_image",
+          "label": "Author image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials",
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "Amazing quality and fast delivery. I'm extremely happy with my purchase!",
+            "author_name": "Ana M.",
+            "author_title": "Verified Buyer"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "The best online shopping experience I've ever had. Will definitely order again!",
+            "author_name": "Marko S.",
+            "author_title": "Verified Buyer"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "Beautiful clothes, exactly as pictured. Love the attention to detail.",
+            "author_name": "Jelena P.",
+            "author_title": "Verified Buyer"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
