@@ -1,0 +1,22 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "show_title": true
+      }
+    },
+    "contact-form": {
+      "type": "contact-form",
+      "settings": {
+        "form_title": "Send us a message",
+        "form_text": "",
+        "show_info": true,
+        "info_title": "Get in touch",
+        "info_text": "<p>We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>",
+        "show_social": true
+      }
+    }
+  },
+  "order": ["main", "contact-form"]
+}

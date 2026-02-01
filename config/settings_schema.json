@@ -188,5 +188,65 @@
         "info": "https://youtube.com/shopify"
       }
     ]
+  },
+  {
+    "name": "Newsletter popup",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "newsletter_popup_enabled",
+        "label": "Enable newsletter popup",
+        "default": false
+      },
+      {
+        "type": "image_picker",
+        "id": "newsletter_popup_image",
+        "label": "Image"
+      },
+      {
+        "type": "text",
+        "id": "newsletter_popup_title",
+        "label": "Title",
+        "default": "Get 10% Off"
+      },
+      {
+        "type": "textarea",
+        "id": "newsletter_popup_text",
+        "label": "Text",
+        "default": "Subscribe to our newsletter and get 10% off your first order."
+      },
+      {
+        "type": "text",
+        "id": "newsletter_popup_button",
+        "label": "Button text",
+        "default": "Subscribe"
+      },
+      {
+        "type": "text",
+        "id": "newsletter_popup_disclaimer",
+        "label": "Disclaimer text",
+        "default": "By subscribing, you agree to receive marketing emails."
+      },
+      {
+        "type": "range",
+        "id": "newsletter_popup_delay",
+        "min": 1,
+        "max": 30,
+        "step": 1,
+        "default": 5,
+        "unit": "sec",
+        "label": "Delay before showing"
+      },
+      {
+        "type": "range",
+        "id": "newsletter_popup_days",
+        "min": 1,
+        "max": 90,
+        "step": 1,
+        "default": 30,
+        "unit": "days",
+        "label": "Days to hide after dismissal"
+      }
+    ]
   }
 ]

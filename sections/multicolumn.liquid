@@ -1,0 +1,397 @@
+{%- comment -%}
+  Multicolumn Section
+  Feature columns with icons, images, and text
+{%- endcomment -%}
+
+<section class="multicolumn-section">
+  <div class="container">
+    {%- if section.settings.title != blank -%}
+      <h2 class="multicolumn-section__title">{{ section.settings.title }}</h2>
+    {%- endif -%}
+
+    {%- if section.settings.subtitle != blank -%}
+      <p class="multicolumn-section__subtitle">{{ section.settings.subtitle }}</p>
+    {%- endif -%}
+
+    <div class="multicolumn-grid multicolumn-grid--{{ section.settings.columns }} multicolumn-grid--{{ section.settings.alignment }}">
+      {%- for block in section.blocks -%}
+        <div class="multicolumn-item" {{ block.shopify_attributes }}>
+          {%- if block.settings.image != blank -%}
+            <div class="multicolumn-item__image multicolumn-item__image--{{ section.settings.image_ratio }}">
+              {{ block.settings.image | image_url: width: 600 | image_tag:
+                loading: 'lazy',
+                class: 'multicolumn-item__img',
+                sizes: '(min-width: 990px) 300px, (min-width: 750px) 50vw, 100vw'
+              }}
+            </div>
+          {%- elsif block.settings.icon != 'none' -%}
+            <div class="multicolumn-item__icon">
+              {%- case block.settings.icon -%}
+                {%- when 'shipping' -%}
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <path d="M21.333 10.667H26.667L30.667 16V24H27.333" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M1.333 4H18.667V24H1.333V4Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="7.333" cy="24" r="3.333" stroke="currentColor" stroke-width="1.5"/>
+                    <circle cx="24" cy="24" r="3.333" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M10.667 24H18.667" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M21.333 10.667V24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                {%- when 'returns' -%}
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <path d="M2.667 13.333L8 8L13.333 13.333" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M8 8V21.333C8 22.394 8.421 23.412 9.172 24.163C9.923 24.914 10.939 25.333 12 25.333H29.333" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                {%- when 'secure' -%}
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <path d="M16 29.333S26.667 24 26.667 16V6.667L16 2.667L5.333 6.667V16C5.333 24 16 29.333 16 29.333Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M12 16L14.667 18.667L20 13.333" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                {%- when 'support' -%}
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <path d="M16 28C22.627 28 28 22.627 28 16C28 9.373 22.627 4 16 4C9.373 4 4 9.373 4 16C4 22.627 9.373 28 16 28Z" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M12 12.8C12.2 11.92 12.707 11.147 13.427 10.613C14.147 10.08 15.033 9.827 15.92 9.893C16.807 9.96 17.64 10.347 18.267 10.98C18.893 11.613 19.267 12.453 19.32 13.333C19.32 16 15.92 17.333 15.92 17.333" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="16" cy="22.667" r="1.333" fill="currentColor"/>
+                  </svg>
+                {%- when 'quality' -%}
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <path d="M16 2.667L20.12 10.987L29.333 12.333L22.667 18.853L24.24 28.013L16 23.693L7.76 28.013L9.333 18.853L2.667 12.333L11.88 10.987L16 2.667Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                {%- when 'gift' -%}
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <path d="M26.667 16V29.333H5.333V16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M29.333 9.333H2.667V16H29.333V9.333Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M16 29.333V9.333" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M16 9.333H10C8.939 9.333 7.922 8.912 7.172 8.163C6.421 7.412 6 6.394 6 5.333C6 4.273 6.421 3.255 7.172 2.505C7.922 1.754 8.939 1.333 10 1.333C14.667 1.333 16 9.333 16 9.333Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M16 9.333H22C23.061 9.333 24.078 8.912 24.828 8.163C25.579 7.412 26 6.394 26 5.333C26 4.273 25.579 3.255 24.828 2.505C24.078 1.754 23.061 1.333 22 1.333C17.333 1.333 16 9.333 16 9.333Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+              {%- endcase -%}
+            </div>
+          {%- endif -%}
+
+          {%- if block.settings.title != blank -%}
+            <h3 class="multicolumn-item__title">{{ block.settings.title }}</h3>
+          {%- endif -%}
+
+          {%- if block.settings.text != blank -%}
+            <div class="multicolumn-item__text rte">
+              {{ block.settings.text }}
+            </div>
+          {%- endif -%}
+
+          {%- if block.settings.link_label != blank and block.settings.link != blank -%}
+            <a href="{{ block.settings.link }}" class="multicolumn-item__link">
+              {{ block.settings.link_label }}
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M3.333 8H12.667M12.667 8L8 3.333M12.667 8L8 12.667" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<style>
+  .multicolumn-section {
+    padding: var(--spacing-10) 0 var(--spacing-16);
+  }
+
+  .multicolumn-section__title {
+    font-size: var(--font-size-xl);
+    font-weight: 300;
+    letter-spacing: var(--letter-spacing-wider);
+    text-transform: uppercase;
+    text-align: center;
+    margin: 0 0 var(--spacing-3);
+  }
+
+  .multicolumn-section__subtitle {
+    font-size: var(--font-size-base);
+    color: var(--color-accent);
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto var(--spacing-10);
+  }
+
+  .multicolumn-grid {
+    display: grid;
+    gap: var(--spacing-8);
+  }
+
+  .multicolumn-grid--2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .multicolumn-grid--3 {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .multicolumn-grid--4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 750px) {
+    .multicolumn-grid--3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .multicolumn-grid--4 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .multicolumn-grid--left .multicolumn-item {
+    text-align: left;
+  }
+
+  .multicolumn-grid--center .multicolumn-item {
+    text-align: center;
+  }
+
+  .multicolumn-item__image {
+    margin-bottom: var(--spacing-4);
+    overflow: hidden;
+  }
+
+  .multicolumn-item__image--portrait {
+    aspect-ratio: 3 / 4;
+  }
+
+  .multicolumn-item__image--square {
+    aspect-ratio: 1 / 1;
+  }
+
+  .multicolumn-item__image--landscape {
+    aspect-ratio: 4 / 3;
+  }
+
+  .multicolumn-item__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .multicolumn-item__icon {
+    margin-bottom: var(--spacing-4);
+    color: var(--color-primary);
+  }
+
+  .multicolumn-grid--center .multicolumn-item__icon {
+    display: flex;
+    justify-content: center;
+  }
+
+  .multicolumn-item__title {
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    letter-spacing: var(--letter-spacing-wide);
+    text-transform: uppercase;
+    margin: 0 0 var(--spacing-2);
+  }
+
+  .multicolumn-item__text {
+    font-size: var(--font-size-sm);
+    color: var(--color-accent);
+    line-height: 1.7;
+  }
+
+  .multicolumn-item__text p {
+    margin: 0;
+  }
+
+  .multicolumn-item__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-1);
+    margin-top: var(--spacing-3);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--color-primary);
+    transition: opacity 0.2s;
+  }
+
+  .multicolumn-item__link:hover {
+    opacity: 0.7;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Multicolumn",
+  "tag": "section",
+  "class": "section-multicolumn",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 4,
+      "label": "Number of columns"
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        }
+      ],
+      "default": "center",
+      "label": "Content alignment"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        {
+          "value": "portrait",
+          "label": "Portrait"
+        },
+        {
+          "value": "square",
+          "label": "Square"
+        },
+        {
+          "value": "landscape",
+          "label": "Landscape"
+        }
+      ],
+      "default": "square",
+      "label": "Image ratio"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "column",
+      "name": "Column",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "info": "Shows if no image is selected",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "shipping",
+              "label": "Shipping"
+            },
+            {
+              "value": "returns",
+              "label": "Returns"
+            },
+            {
+              "value": "secure",
+              "label": "Secure"
+            },
+            {
+              "value": "support",
+              "label": "Support"
+            },
+            {
+              "value": "quality",
+              "label": "Quality"
+            },
+            {
+              "value": "gift",
+              "label": "Gift"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Column title"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Pair text with an image to focus on your chosen product, collection, or blog post.</p>"
+        },
+        {
+          "type": "text",
+          "id": "link_label",
+          "label": "Link label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Multicolumn",
+      "settings": {
+        "columns": 4
+      },
+      "blocks": [
+        {
+          "type": "column",
+          "settings": {
+            "icon": "shipping",
+            "title": "Free Shipping",
+            "text": "<p>Free shipping on orders over 5,000 RSD</p>"
+          }
+        },
+        {
+          "type": "column",
+          "settings": {
+            "icon": "returns",
+            "title": "Easy Returns",
+            "text": "<p>30-day return policy for your peace of mind</p>"
+          }
+        },
+        {
+          "type": "column",
+          "settings": {
+            "icon": "secure",
+            "title": "Secure Payment",
+            "text": "<p>Your payment information is safe with us</p>"
+          }
+        },
+        {
+          "type": "column",
+          "settings": {
+            "icon": "support",
+            "title": "Customer Support",
+            "text": "<p>Dedicated support team ready to help</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

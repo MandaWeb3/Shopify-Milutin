@@ -1,0 +1,230 @@
+{%- comment -%}
+  List Collections Section
+  Displays all collections in a grid
+{%- endcomment -%}
+
+<section class="list-collections-section">
+  <div class="container">
+    {%- if section.settings.title != blank -%}
+      <h1 class="list-collections-section__title">{{ section.settings.title }}</h1>
+    {%- endif -%}
+
+    {%- if section.settings.description != blank -%}
+      <p class="list-collections-section__description">{{ section.settings.description }}</p>
+    {%- endif -%}
+
+    <div class="list-collections-grid list-collections-grid--{{ section.settings.columns }}">
+      {%- for collection in collections -%}
+        {%- if collection.all_products_count > 0 or section.settings.show_empty -%}
+          <a href="{{ collection.url }}" class="collection-card">
+            <div class="collection-card__image-wrapper">
+              {%- if collection.image -%}
+                {{ collection.image | image_url: width: 800 | image_tag:
+                  loading: 'lazy',
+                  class: 'collection-card__image',
+                  sizes: '(min-width: 1400px) 400px, (min-width: 990px) 33vw, (min-width: 750px) 50vw, 100vw'
+                }}
+              {%- elsif collection.products.first and collection.products.first.featured_image -%}
+                {{ collection.products.first.featured_image | image_url: width: 800 | image_tag:
+                  loading: 'lazy',
+                  class: 'collection-card__image',
+                  sizes: '(min-width: 1400px) 400px, (min-width: 990px) 33vw, (min-width: 750px) 50vw, 100vw'
+                }}
+              {%- else -%}
+                <div class="collection-card__placeholder">
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                    <rect x="8" y="8" width="32" height="32" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                    <circle cx="18" cy="18" r="4" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M8 32L16 24L24 32L32 20L40 28" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              {%- endif -%}
+              <div class="collection-card__overlay"></div>
+            </div>
+            <div class="collection-card__content">
+              <h2 class="collection-card__title">{{ collection.title }}</h2>
+              {%- if section.settings.show_count -%}
+                <p class="collection-card__count">
+                  {{ 'collections.product_count' | t: count: collection.all_products_count }}
+                </p>
+              {%- endif -%}
+            </div>
+          </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<style>
+  .list-collections-section {
+    padding: var(--spacing-10) 0 var(--spacing-16);
+  }
+
+  .list-collections-section__title {
+    font-size: var(--font-size-2xl);
+    font-weight: 300;
+    letter-spacing: var(--letter-spacing-wider);
+    text-transform: uppercase;
+    text-align: center;
+    margin: 0 0 var(--spacing-3);
+  }
+
+  .list-collections-section__description {
+    font-size: var(--font-size-base);
+    color: var(--color-accent);
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto var(--spacing-10);
+  }
+
+  .list-collections-grid {
+    display: grid;
+    gap: var(--spacing-4);
+  }
+
+  .list-collections-grid--2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .list-collections-grid--3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .list-collections-grid--4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 750px) {
+    .list-collections-grid--3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .list-collections-grid--4 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (min-width: 990px) {
+    .list-collections-grid {
+      gap: var(--spacing-6);
+    }
+
+    .list-collections-grid--4 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .collection-card {
+    display: block;
+    position: relative;
+    text-decoration: none;
+    color: inherit;
+    overflow: hidden;
+  }
+
+  .collection-card__image-wrapper {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    background-color: #f5f5f5;
+  }
+
+  .collection-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+
+  .collection-card:hover .collection-card__image {
+    transform: scale(1.05);
+  }
+
+  .collection-card__placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-border);
+  }
+
+  .collection-card__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .collection-card__content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: var(--spacing-6);
+    color: #fff;
+  }
+
+  .collection-card__title {
+    font-size: var(--font-size-lg);
+    font-weight: 400;
+    letter-spacing: var(--letter-spacing-wide);
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  @media (min-width: 750px) {
+    .collection-card__title {
+      font-size: var(--font-size-xl);
+    }
+  }
+
+  .collection-card__count {
+    font-size: var(--font-size-sm);
+    opacity: 0.8;
+    margin: var(--spacing-1) 0 0;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "List Collections",
+  "tag": "section",
+  "class": "section-list-collections",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Collections"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 3,
+      "label": "Columns"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_count",
+      "label": "Show product count",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_empty",
+      "label": "Show empty collections",
+      "default": false
+    }
+  ]
+}
+{% endschema %}

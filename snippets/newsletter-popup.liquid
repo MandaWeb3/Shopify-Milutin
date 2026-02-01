@@ -1,0 +1,311 @@
+{%- comment -%}
+  Newsletter Popup
+  Email capture modal with delay and cookie storage
+{%- endcomment -%}
+
+{%- if settings.newsletter_popup_enabled -%}
+<div class="newsletter-popup" id="NewsletterPopup" role="dialog" aria-modal="true" aria-labelledby="NewsletterPopupTitle" hidden>
+  <div class="newsletter-popup__overlay" data-newsletter-close></div>
+  <div class="newsletter-popup__content">
+    <button type="button" class="newsletter-popup__close" data-newsletter-close aria-label="{{ 'general.close' | t }}">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </button>
+
+    {%- if settings.newsletter_popup_image != blank -%}
+      <div class="newsletter-popup__image">
+        {{ settings.newsletter_popup_image | image_url: width: 600 | image_tag: loading: 'lazy' }}
+      </div>
+    {%- endif -%}
+
+    <div class="newsletter-popup__body">
+      {%- if settings.newsletter_popup_title != blank -%}
+        <h2 id="NewsletterPopupTitle" class="newsletter-popup__title">{{ settings.newsletter_popup_title }}</h2>
+      {%- endif -%}
+
+      {%- if settings.newsletter_popup_text != blank -%}
+        <p class="newsletter-popup__text">{{ settings.newsletter_popup_text }}</p>
+      {%- endif -%}
+
+      {%- form 'customer', class: 'newsletter-popup__form', id: 'NewsletterPopupForm' -%}
+        <input type="hidden" name="contact[tags]" value="newsletter,popup">
+
+        <div class="newsletter-popup__form-row">
+          <input
+            type="email"
+            name="contact[email]"
+            class="newsletter-popup__input"
+            placeholder="{{ 'footer.newsletter.placeholder' | t }}"
+            required
+            autocomplete="email"
+            aria-label="{{ 'footer.newsletter.placeholder' | t }}"
+          >
+          <button type="submit" class="newsletter-popup__submit btn btn--primary">
+            {{ settings.newsletter_popup_button | default: 'footer.newsletter.submit' | t }}
+          </button>
+        </div>
+
+        {%- if form.posted_successfully? -%}
+          <p class="newsletter-popup__success">{{ 'footer.newsletter.success' | t }}</p>
+        {%- endif -%}
+
+        {%- if form.errors -%}
+          <p class="newsletter-popup__error">{{ form.errors | default_errors }}</p>
+        {%- endif -%}
+      {%- endform -%}
+
+      {%- if settings.newsletter_popup_disclaimer != blank -%}
+        <p class="newsletter-popup__disclaimer">{{ settings.newsletter_popup_disclaimer }}</p>
+      {%- endif -%}
+
+      <button type="button" class="newsletter-popup__decline" data-newsletter-close>
+        {{ 'newsletter.no_thanks' | t | default: 'No thanks' }}
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .newsletter-popup {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-4);
+  }
+
+  .newsletter-popup[hidden] {
+    display: none;
+  }
+
+  .newsletter-popup__overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+  }
+
+  .newsletter-popup__content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    max-width: 480px;
+    width: 100%;
+    max-height: 90vh;
+    background-color: var(--color-background);
+    overflow: hidden;
+    animation: newsletterSlideUp 0.4s ease;
+  }
+
+  @media (min-width: 750px) {
+    .newsletter-popup__content {
+      flex-direction: row;
+      max-width: 800px;
+    }
+  }
+
+  @keyframes newsletterSlideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .newsletter-popup__close {
+    position: absolute;
+    top: var(--spacing-3);
+    right: var(--spacing-3);
+    z-index: 1;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-background);
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  .newsletter-popup__close:hover {
+    opacity: 0.7;
+  }
+
+  .newsletter-popup__image {
+    display: none;
+  }
+
+  @media (min-width: 750px) {
+    .newsletter-popup__image {
+      display: block;
+      flex: 0 0 50%;
+    }
+
+    .newsletter-popup__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .newsletter-popup__body {
+    flex: 1;
+    padding: var(--spacing-10) var(--spacing-6);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+
+  @media (min-width: 750px) {
+    .newsletter-popup__body {
+      padding: var(--spacing-10) var(--spacing-8);
+    }
+  }
+
+  .newsletter-popup__title {
+    font-size: var(--font-size-xl);
+    font-weight: 300;
+    letter-spacing: var(--letter-spacing-wider);
+    text-transform: uppercase;
+    margin: 0 0 var(--spacing-3);
+  }
+
+  .newsletter-popup__text {
+    font-size: var(--font-size-sm);
+    color: var(--color-accent);
+    line-height: 1.6;
+    margin: 0 0 var(--spacing-6);
+  }
+
+  .newsletter-popup__form-row {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+  }
+
+  @media (min-width: 480px) {
+    .newsletter-popup__form-row {
+      flex-direction: row;
+    }
+  }
+
+  .newsletter-popup__input {
+    flex: 1;
+    padding: var(--spacing-3) var(--spacing-4);
+    font-size: var(--font-size-sm);
+    border: 1px solid var(--color-border);
+    background: transparent;
+  }
+
+  .newsletter-popup__input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+  }
+
+  .newsletter-popup__submit {
+    white-space: nowrap;
+  }
+
+  .newsletter-popup__success {
+    font-size: var(--font-size-sm);
+    color: var(--color-success);
+    margin: var(--spacing-3) 0 0;
+  }
+
+  .newsletter-popup__error {
+    font-size: var(--font-size-sm);
+    color: var(--color-error);
+    margin: var(--spacing-3) 0 0;
+  }
+
+  .newsletter-popup__disclaimer {
+    font-size: var(--font-size-xs);
+    color: var(--color-accent);
+    margin: var(--spacing-4) 0 0;
+  }
+
+  .newsletter-popup__decline {
+    margin-top: var(--spacing-4);
+    padding: 0;
+    font-size: var(--font-size-xs);
+    color: var(--color-accent);
+    text-decoration: underline;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+
+  .newsletter-popup__decline:hover {
+    color: var(--color-primary);
+  }
+</style>
+
+<script>
+  (function() {
+    const popup = document.getElementById('NewsletterPopup');
+    if (!popup) return;
+
+    const COOKIE_NAME = 'newsletter_popup_dismissed';
+    const DELAY = {{ settings.newsletter_popup_delay | default: 5 }} * 1000;
+    const DAYS_HIDDEN = {{ settings.newsletter_popup_days | default: 30 }};
+
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+      return null;
+    }
+
+    function setCookie(name, value, days) {
+      const date = new Date();
+      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+      document.cookie = `${name}=${value};expires=${date.toUTCString()};path=/`;
+    }
+
+    function showPopup() {
+      popup.hidden = false;
+      document.body.style.overflow = 'hidden';
+      popup.querySelector('.newsletter-popup__input')?.focus();
+    }
+
+    function hidePopup() {
+      popup.hidden = true;
+      document.body.style.overflow = '';
+      setCookie(COOKIE_NAME, 'true', DAYS_HIDDEN);
+    }
+
+    // Check if already dismissed
+    if (getCookie(COOKIE_NAME)) return;
+
+    // Show popup after delay
+    setTimeout(showPopup, DELAY);
+
+    // Close handlers
+    popup.querySelectorAll('[data-newsletter-close]').forEach(btn => {
+      btn.addEventListener('click', hidePopup);
+    });
+
+    // ESC key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !popup.hidden) {
+        hidePopup();
+      }
+    });
+
+    // Close on successful submission
+    const form = popup.querySelector('form');
+    if (form && form.querySelector('.newsletter-popup__success')) {
+      setTimeout(hidePopup, 2000);
+    }
+  })();
+</script>
+{%- endif -%}
