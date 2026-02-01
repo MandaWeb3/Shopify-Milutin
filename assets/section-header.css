@@ -64,6 +64,10 @@
   transition: height var(--transition-normal), background-color var(--transition-normal), box-shadow var(--transition-normal);
 }
 
+.header > .container {
+  height: 100%;
+}
+
 .header-wrapper--sticky.is-scrolled .header {
   box-shadow: var(--shadow-sm);
 }
