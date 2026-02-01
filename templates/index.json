@@ -12,6 +12,7 @@
     "video-hero": {
       "type": "video-hero",
       "settings": {
+        "video_asset": "herovideo.mp4",
         "video_url": "",
         "image": "",
         "image_mobile": "",

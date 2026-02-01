@@ -1,6 +1,7 @@
 {%- liquid
   assign video = section.settings.video
   assign video_url = section.settings.video_url
+  assign video_asset = section.settings.video_asset
   assign image = section.settings.image
   assign image_mobile = section.settings.image_mobile
   assign heading = section.settings.heading
@@ -29,6 +30,17 @@
         class: 'video-hero__video',
         poster: image
       }}
+    {%- elsif video_asset != blank -%}
+      <video
+        class="video-hero__video"
+        autoplay
+        loop
+        muted
+        playsinline
+        {%- if image != blank %} poster="{{ image | image_url: width: 1920 }}"{% endif %}
+      >
+        <source src="{{ video_asset | asset_url }}" type="video/mp4">
+      </video>
     {%- elsif video_url != blank -%}
       {%- if video_url contains 'youtube' or video_url contains 'youtu.be' -%}
         <div class="video-hero__external" data-video-background data-video-url="{{ video_url }}"></div>
@@ -108,6 +120,12 @@
       "id": "video",
       "label": "Video",
       "info": "Hosted video file"
+    },
+    {
+      "type": "text",
+      "id": "video_asset",
+      "label": "Video asset filename",
+      "info": "Filename in assets folder (e.g., herovideo.mp4)"
     },
     {
       "type": "text",
