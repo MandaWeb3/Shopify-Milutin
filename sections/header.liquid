@@ -80,12 +80,12 @@
           <a href="{{ routes.root_url }}" class="header__logo-link">
             {%- if settings.logo != blank -%}
               {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
-              {{ settings.logo | image_url: width: 300 | image_tag:
+              {{ settings.logo | image_url: width: 500 | image_tag:
                 class: 'header__logo-image',
                 alt: logo_alt,
                 loading: 'eager',
                 width: settings.logo_width,
-                widths: '50, 100, 150, 200, 250, 300'
+                widths: '50, 100, 150, 200, 250, 300, 400, 500'
               }}
             {%- else -%}
               <span class="header__logo-text">{{ shop.name }}</span>
