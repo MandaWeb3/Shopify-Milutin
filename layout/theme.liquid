@@ -6,7 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="">
     <link rel="canonical" href="{{ canonical_url }}">
+
+    {%- comment -%} Performance: Preconnect to external domains {%- endcomment -%}
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.shopify.com">
+    <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.shopifycdn.com">
+
+    {%- comment -%} Preload critical CSS for faster first paint {%- endcomment -%}
+    <link rel="preload" href="{{ 'base.css' | asset_url }}" as="style">
+    <link rel="preload" href="{{ 'section-header.css' | asset_url }}" as="style">
 
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
@@ -71,16 +80,38 @@
     }
     </script>
 
+    {%- comment -%} Critical CSS - loads on every page {%- endcomment -%}
     {{ 'base.css' | asset_url | stylesheet_tag }}
     {{ 'section-header.css' | asset_url | stylesheet_tag }}
     {{ 'section-footer.css' | asset_url | stylesheet_tag }}
+
+    {%- comment -%} Page-specific CSS - only loads when needed {%- endcomment -%}
     {{ 'section-search.css' | asset_url | stylesheet_tag }}
-    {{ 'sections-homepage.css' | asset_url | stylesheet_tag }}
-    {{ 'section-collection.css' | asset_url | stylesheet_tag }}
-    {{ 'section-product.css' | asset_url | stylesheet_tag }}
-    {{ 'section-cart.css' | asset_url | stylesheet_tag }}
-    {{ 'section-customers.css' | asset_url | stylesheet_tag }}
-    {{ 'product-card-enhancements.css' | asset_url | stylesheet_tag }}
+
+    {%- if template.name == 'index' -%}
+      {{ 'sections-homepage.css' | asset_url | stylesheet_tag }}
+    {%- endif -%}
+
+    {%- if template.name == 'collection' or template.name == 'search' -%}
+      {{ 'section-collection.css' | asset_url | stylesheet_tag }}
+    {%- endif -%}
+
+    {%- if template.name == 'product' -%}
+      {{ 'section-product.css' | asset_url | stylesheet_tag }}
+    {%- endif -%}
+
+    {%- if template.name == 'cart' -%}
+      {{ 'section-cart.css' | asset_url | stylesheet_tag }}
+    {%- endif -%}
+
+    {%- if template.directory == 'customers' -%}
+      {{ 'section-customers.css' | asset_url | stylesheet_tag }}
+    {%- endif -%}
+
+    {%- comment -%} Product cards appear on multiple pages {%- endcomment -%}
+    {%- if template.name == 'index' or template.name == 'collection' or template.name == 'search' or template.name == 'product' -%}
+      {{ 'product-card-enhancements.css' | asset_url | stylesheet_tag }}
+    {%- endif -%}
 
     {%- unless settings.type_body_font.system? -%}
       {{ settings.type_body_font | font_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: 'anonymous' }}
@@ -150,13 +181,32 @@
 
     {% render 'search-modal' %}
 
+    {%- comment -%} Critical JS - loads on every page {%- endcomment -%}
     <script src="{{ 'section-header.js' | asset_url }}" defer></script>
     <script src="{{ 'section-search.js' | asset_url }}" defer></script>
-    <script src="{{ 'sections-homepage.js' | asset_url }}" defer></script>
-    <script src="{{ 'section-collection.js' | asset_url }}" defer></script>
-    <script src="{{ 'section-product.js' | asset_url }}" defer></script>
-    <script src="{{ 'section-cart.js' | asset_url }}" defer></script>
-    <script src="{{ 'product-card-enhancements.js' | asset_url }}" defer></script>
+
+    {%- comment -%} Page-specific JS - only loads when needed {%- endcomment -%}
+    {%- if template.name == 'index' -%}
+      <script src="{{ 'sections-homepage.js' | asset_url }}" defer></script>
+    {%- endif -%}
+
+    {%- if template.name == 'collection' or template.name == 'search' -%}
+      <script src="{{ 'section-collection.js' | asset_url }}" defer></script>
+    {%- endif -%}
+
+    {%- if template.name == 'product' -%}
+      <script src="{{ 'section-product.js' | asset_url }}" defer></script>
+    {%- endif -%}
+
+    {%- comment -%} Cart JS needed for drawer on all pages, or cart page {%- endcomment -%}
+    {%- if settings.cart_type == 'drawer' or template.name == 'cart' -%}
+      <script src="{{ 'section-cart.js' | asset_url }}" defer></script>
+    {%- endif -%}
+
+    {%- comment -%} Product card enhancements (wishlist, quick view, quick add) {%- endcomment -%}
+    {%- if template.name == 'index' or template.name == 'collection' or template.name == 'search' or template.name == 'product' -%}
+      <script src="{{ 'product-card-enhancements.js' | asset_url }}" defer></script>
+    {%- endif -%}
 
     {% render 'quick-view-modal' %}
     {% render 'size-guide-modal' %}
