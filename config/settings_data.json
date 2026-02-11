@@ -9,8 +9,8 @@
  */
 {
   "current": {
-    "logo": "shopify://shop_images/come-up-with-something-similar-but-dont-overcompli_1_-2.jpg",
-    "logo_width": 450,
+    "logo": "shopify://shop_images/come-up-with-something-similar-but-i-want-it-to-wr_1.png",
+    "logo_width": 500,
     "color_primary": "#000000",
     "color_secondary": "#FFFFFF",
     "color_accent": "#757575",
@@ -34,6 +34,10 @@
       },
       "footer": {
         "type": "footer",
+        "settings": {}
+      },
+      "cart-drawer": {
+        "type": "cart-drawer",
         "settings": {}
       }
     },
