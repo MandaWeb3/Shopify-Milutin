@@ -100,7 +100,7 @@
       {{ 'section-product.css' | asset_url | stylesheet_tag }}
     {%- endif -%}
 
-    {%- if template.name == 'cart' -%}
+    {%- if template.name == 'cart' or settings.cart_type == 'drawer' -%}
       {{ 'section-cart.css' | asset_url | stylesheet_tag }}
     {%- endif -%}
 
