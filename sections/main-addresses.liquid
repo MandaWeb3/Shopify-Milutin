@@ -34,7 +34,7 @@
           </div>
 
           {%- comment -%} Hidden delete form {%- endcomment -%}
-          {%- form 'customer_address', address, class: 'address-delete-form', id: 'delete-address-' | append: address.id -%}
+          {%- form address.id -%}
             <input type="hidden" name="_method" value="delete">
           {%- endform -%}
         </div>
@@ -181,3 +181,14 @@
   "class": "section-main-addresses"
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- form 'customer_address', address, class: 'address-delete-form', id: 'delete-address-'
+    | append: address.id -%}"
+  to: "{%- form address.id -%}"
+  position: 1432..1455
+{% endcomment %}
